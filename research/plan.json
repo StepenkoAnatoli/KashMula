@@ -1,12 +1,680 @@
 {
   "topic": "Which fully automated multi-agent online income business (no YouTube Shorts) can a US operator build in 2026 on 200-1000 USD a month, and which GitHub and Hugging Face tooling does it rest on",
   "notes": "Fill queries and urls BEFORE collecting - every scrape spends a credit. q is the search query, why records which unknown in research/DISCOVERY.md it closes, prefer lists the official domains that carry the fact. depth sets the scrapes per run (probe 2, quick 4, normal 10, deep 25); maxScrapes can only lower that.",
-  "depth": "quick",
+  "depth": "deep",
   "refreshDays": 30,
   "limit": 8,
   "perQuery": 3,
-  "maxScrapes": 10,
-  "prefer": [],
-  "queries": [],
-  "urls": []
+  "maxScrapes": 25,
+  "prefer": [
+    "apify.com",
+    "aws.amazon.com",
+    "azure.microsoft.com",
+    "beehiiv.com",
+    "blog.apify.com",
+    "blog.gdeltproject.org",
+    "clipdrop.co",
+    "cloud.google.com",
+    "docs.apify.com",
+    "docs.stripe.com",
+    "etsy.com",
+    "gdeltproject.org",
+    "ghost.org",
+    "help.apify.com",
+    "help.etsy.com",
+    "mindee.com",
+    "photoroom.com",
+    "remove.bg",
+    "stripe.com",
+    "support.stripe.com",
+    "trustmrr.com"
+  ],
+  "queries": [
+    {
+      "q": "Apify Store payouts US tax form W-9 1099 W-8BEN creator tax information",
+      "why": "U-02 - the Apify payout pages do not say how US or foreign creators are tax-documented; no owning page is known yet",
+      "prefer": [
+        "docs.apify.com",
+        "help.apify.com",
+        "apify.com"
+      ]
+    },
+    {
+      "q": "Stripe Managed Payments supported countries business location list",
+      "why": "U-09 U-01 - whether the operator's location (US, or Israel if the residency note holds) is eligible for Stripe as merchant of record",
+      "prefer": [
+        "docs.stripe.com",
+        "support.stripe.com",
+        "stripe.com"
+      ]
+    },
+    {
+      "q": "Apify Store pay per event Actor monthly users revenue by category document conversion government data API",
+      "why": "U-05 - competitor set and demand within candidate Actor niches; no category-level page identified",
+      "prefer": [
+        "apify.com",
+        "docs.apify.com",
+        "blog.apify.com"
+      ]
+    },
+    {
+      "q": "invoice receipt OCR to JSON API pricing per page",
+      "why": "U-06 - competitor price points for the C3 OCR variant",
+      "prefer": [
+        "aws.amazon.com",
+        "cloud.google.com",
+        "azure.microsoft.com",
+        "mindee.com"
+      ]
+    },
+    {
+      "q": "background removal API pricing per image",
+      "why": "U-06 - competitor price points for the C3 image variant",
+      "prefer": [
+        "remove.bg",
+        "photoroom.com",
+        "clipdrop.co"
+      ]
+    },
+    {
+      "q": "niche B2B newsletter sponsorship revenue verified Stripe small list",
+      "why": "U-21 - no payment-verified newsletter revenue owner page found yet",
+      "prefer": [
+        "trustmrr.com",
+        "beehiiv.com",
+        "ghost.org"
+      ]
+    },
+    {
+      "q": "GDELT terms of use commercial redistribution",
+      "why": "U-24 - the GDELT reuse terms used by search-light-signals are unverified (KU-SE-1)",
+      "prefer": [
+        "gdeltproject.org",
+        "blog.gdeltproject.org"
+      ]
+    },
+    {
+      "q": "Etsy seller fees listing transaction payment processing United States",
+      "why": "U-23 - POD margin model needs Etsy's own fee page, which no scout captured",
+      "prefer": [
+        "etsy.com",
+        "help.etsy.com"
+      ]
+    },
+    {
+      "q": "Paddle supported countries sellers list Israel",
+      "why": "U-32 - whether Paddle accepts an Israeli seller (the countries page answered 403 to a plain fetch)",
+      "prefer": [
+        "paddle.com"
+      ]
+    },
+    {
+      "q": "Lemon Squeezy supported countries for sellers Israel",
+      "why": "U-32 - whether Lemon Squeezy accepts an Israeli seller",
+      "prefer": [
+        "lemonsqueezy.com",
+        "docs.lemonsqueezy.com"
+      ]
+    },
+    {
+      "q": "Etsy Payments eligible countries Israel seller",
+      "why": "U-32 U-22 - whether an Israeli seller can be paid by Etsy Payments (C6)",
+      "prefer": [
+        "help.etsy.com",
+        "etsy.com"
+      ]
+    },
+    {
+      "q": "Shopify Partner payouts supported countries Israel app developer",
+      "why": "U-34 U-32 - whether Shopify pays an Israeli app developer",
+      "prefer": [
+        "help.shopify.com",
+        "shopify.dev"
+      ]
+    },
+    {
+      "q": "עוסק פטור תקרת מחזור 2026 רשות המסים",
+      "why": "U-37 - the osek patur turnover ceiling and registration duty for a small Israeli self-employed seller",
+      "prefer": [
+        "gov.il",
+        "taxes.gov.il"
+      ]
+    },
+    {
+      "q": "מע\"מ בשיעור אפס שירות לתושב חוץ סעיף 30(א)(5) חוק מע\"מ",
+      "why": "U-37 - whether services sold to foreign residents are zero-rated for Israeli VAT",
+      "prefer": [
+        "gov.il",
+        "nevo.co.il",
+        "kolzchut.org.il"
+      ]
+    },
+    {
+      "q": "ביטוח לאומי עצמאי דמי ביטוח 2026 מדריך",
+      "why": "U-37 - National Insurance obligations of an Israeli self-employed person",
+      "prefer": [
+        "btl.gov.il",
+        "kolzchut.org.il"
+      ]
+    },
+    {
+      "q": "PayPal Israel business account receive USD payments withdraw to Israeli bank fees",
+      "why": "U-32 - PayPal as a payout rail for an Israeli seller (Apify, Gumroad)",
+      "prefer": [
+        "paypal.com"
+      ]
+    }
+  ],
+  "urls": [
+    {
+      "url": "https://www.irs.gov/forms-pubs/about-form-w-9",
+      "type": "P",
+      "why": "U-01 - US-person certification form required by US payers and marketplaces"
+    },
+    {
+      "url": "https://www.irs.gov/forms-pubs/about-form-w-8-ben",
+      "type": "P",
+      "why": "U-01 - foreign-individual certification form, applicable if the operator is an Israeli tax resident"
+    },
+    {
+      "url": "https://support.stripe.com/questions/requirements-for-having-a-us-stripe-account",
+      "type": "P",
+      "why": "U-01 - Stripe US account needs a US-present owner, physical address and EIN or SSN/ITIN"
+    },
+    {
+      "url": "https://docs.apify.com/platform/actors/publishing/monetize/monthly-payouts",
+      "type": "P",
+      "why": "U-02 - payout methods, minimums, ID verification, no ACH to US, invoice and payout dates"
+    },
+    {
+      "url": "https://docs.apify.com/legal/store-publishing-terms-and-conditions",
+      "type": "P",
+      "why": "U-02 - 80% minus platform costs, KYC, forfeiture of balances under threshold after 12 months (updated 2026-09-15)"
+    },
+    {
+      "url": "https://docs.apify.com/platform/actors/publishing/monetize/pricing-and-costs",
+      "type": "P",
+      "why": "U-03 - profit = (0.8 x revenue) - platform costs; only paid-plan users count"
+    },
+    {
+      "url": "https://apify.com/pricing",
+      "type": "P",
+      "why": "U-03 - platform usage (compute) rates that are deducted from creator revenue"
+    },
+    {
+      "url": "https://blog.apify.com/migrating-to-pay-per-event-pricing/",
+      "type": "P",
+      "why": "U-03 - rental sunset 1 Oct 2026; unmigrated Actors earn $0"
+    },
+    {
+      "url": "https://docs.apify.com/legal/acceptable-use-policy",
+      "type": "P",
+      "why": "U-04 - what Actors and sources the Store permits"
+    },
+    {
+      "url": "https://docs.apify.com/platform/actors/publishing/monetize",
+      "type": "P",
+      "why": "U-04 - agentic payments conditions (PPE, limited permissions, no Standby, developer KYC)"
+    },
+    {
+      "url": "https://apify.com/change-log/pay-for-apify-actors-with-x402",
+      "type": "P",
+      "why": "U-04 - since 2026-06-26 agents pay for eligible Actors in USDC via x402 without an account"
+    },
+    {
+      "url": "https://apify.com/partners/actor-developers",
+      "type": "P",
+      "why": "U-05 - self-reported $1.6M/month to 4,500 developers; 79,601 tools"
+    },
+    {
+      "url": "https://help.apify.com/en/articles/8684010-make-money-publishing-your-actors-on-apify-store",
+      "type": "P",
+      "why": "U-05 - 20% commission; claims top creators exceed $10k MRR"
+    },
+    {
+      "url": "https://blog.apify.com/building-98-actors-on-apify-store/",
+      "type": "S",
+      "why": "U-05 - first-person hours and MAU for a 98-Actor portfolio (resolve the 8-11 h vs 15-20 h conflict)"
+    },
+    {
+      "url": "https://docs.opensaas.sh/blog/2025-05-21-saas-cost-marketing-breakdown/",
+      "type": "S",
+      "why": "U-06 - CoverLetterGPT claimed MRR, costs and maintenance hours on Open SaaS"
+    },
+    {
+      "url": "https://trustmrr.com/api/ai/discovery",
+      "type": "P",
+      "why": "U-06 - verified revenue of recently added and fastest-growing small SaaS comparables"
+    },
+    {
+      "url": "https://docs.rapidapi.com/docs/payouts-and-finance",
+      "type": "P",
+      "why": "U-06 - 25% fee and PayPal-only payouts if C3 is also listed on Rapid"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/AsherKasper/stablecoin-payment-rails/HEAD/README.md",
+      "type": "L",
+      "why": "U-07 - agentic.market census - $16.5K gross per 30 days, 15 endpoints over $100/month"
+    },
+    {
+      "url": "https://www.x402.org/",
+      "type": "P",
+      "why": "U-07 - headline x402 counter (to compare against reports that it is frozen)"
+    },
+    {
+      "url": "https://www.theblock.co/post/408574/visa-stablecoins-agentic-ai-commerce",
+      "type": "S",
+      "why": "U-07 - Visa/Artemis adjusted x402 volume (~$15M) and MPP early volume"
+    },
+    {
+      "url": "https://docs.stripe.com/payments/machine",
+      "type": "P",
+      "why": "U-08 - MPP/x402 availability, New York exclusion, minimums, fiat settlement"
+    },
+    {
+      "url": "https://docs.cdp.coinbase.com/x402/core-concepts/facilitator",
+      "type": "P",
+      "why": "U-08 - 1,000 free settlements/month, then $0.001 each; supported networks"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/stripe-samples/machine-payments/HEAD/README.md",
+      "type": "P",
+      "why": "U-08 - reference implementation and licence for a monetised MCP tool"
+    },
+    {
+      "url": "https://docs.stripe.com/payments/managed-payments/eligibility",
+      "type": "P",
+      "why": "U-09 - 'fully automated digital product' requirement, supported locations, tax codes"
+    },
+    {
+      "url": "https://docs.stripe.com/payments/managed-payments",
+      "type": "P",
+      "why": "U-09 - Stripe as merchant of record handles tax, fraud, disputes"
+    },
+    {
+      "url": "https://stripe.com/pricing",
+      "type": "P",
+      "why": "U-09 - 2.9% + 30c, Managed Payments +3.5%, $15 dispute fee"
+    },
+    {
+      "url": "https://gumroad.com/prohibited",
+      "type": "P",
+      "why": "U-10 - ban on selling AI tool/content-generation access fulfilled outside Gumroad"
+    },
+    {
+      "url": "https://www.paddle.com/help/start/intro-to-paddle/what-am-i-not-allowed-to-sell-on-paddle",
+      "type": "P",
+      "why": "U-10 - Paddle bans on likeness generation, human services, social-engagement tools"
+    },
+    {
+      "url": "https://stripe.com/legal/restricted-businesses",
+      "type": "P",
+      "why": "U-10 - Stripe prohibited and restricted businesses, incl. get-rich-quick and engagement sales"
+    },
+    {
+      "url": "https://huggingface.co/Qwen/Qwen3.8-27B/raw/main/LICENSE",
+      "type": "P",
+      "why": "U-11 - Qwen3.8-27B Apache-2.0 licence text"
+    },
+    {
+      "url": "https://huggingface.co/openai/gpt-oss-120b/raw/main/USAGE_POLICY",
+      "type": "P",
+      "why": "U-11 - gpt-oss Apache-2.0 plus USAGE_POLICY file"
+    },
+    {
+      "url": "https://ai.google.dev/gemma/docs/gemma_4_license",
+      "type": "P",
+      "why": "U-11 - Gemma 4 licence and linked prohibited-use policy scope"
+    },
+    {
+      "url": "https://huggingface.co/black-forest-labs/FLUX.2-klein-4B",
+      "type": "P",
+      "why": "U-12 - klein 4B Apache-2.0 (the 9B variant is non-commercial)"
+    },
+    {
+      "url": "https://huggingface.co/ZhengPeng7/BiRefNet",
+      "type": "P",
+      "why": "U-12 - BiRefNet MIT background removal"
+    },
+    {
+      "url": "https://huggingface.co/Qwen/Qwen-Image-Edit-2511",
+      "type": "P",
+      "why": "U-12 - Qwen-Image-Edit-2511 Apache-2.0 (unlike Qwen-Image-2.1)"
+    },
+    {
+      "url": "https://huggingface.co/zai-org/GLM-OCR",
+      "type": "P",
+      "why": "U-13 - GLM-OCR MIT licence and capability"
+    },
+    {
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-OCR-2",
+      "type": "P",
+      "why": "U-13 - DeepSeek-OCR-2 Apache-2.0"
+    },
+    {
+      "url": "https://huggingface.co/PaddlePaddle/PaddleOCR-VL",
+      "type": "P",
+      "why": "U-13 - PaddleOCR-VL Apache-2.0"
+    },
+    {
+      "url": "https://www.anthropic.com/legal/commercial-terms",
+      "type": "P",
+      "why": "U-14 - Commercial Terms governing API and Agent SDK use and output ownership"
+    },
+    {
+      "url": "https://www.anthropic.com/legal/aup",
+      "type": "P",
+      "why": "U-14 - no automated account creation; AI disclosure for consumer-facing agents; no spam or fake reviews"
+    },
+    {
+      "url": "https://code.claude.com/docs/en/agent-sdk/overview",
+      "type": "P",
+      "why": "U-14 - third parties may not offer claude.ai login; Commercial Terms govern the SDK"
+    },
+    {
+      "url": "https://platform.claude.com/docs/en/about-claude/pricing",
+      "type": "P",
+      "why": "U-15 - Claude per-MTok prices, batch and cache discounts, tokenizer note"
+    },
+    {
+      "url": "https://platform.claude.com/docs/en/api/rate-limits",
+      "type": "P",
+      "why": "U-15 - monthly spend caps by tier and custom limits returning HTTP 400"
+    },
+    {
+      "url": "https://developers.openai.com/api/docs/pricing",
+      "type": "P",
+      "why": "U-15 - OpenAI model prices incl. cheap gpt-6-luna tier"
+    },
+    {
+      "url": "https://router.huggingface.co/v1/models",
+      "type": "P",
+      "why": "U-16 - live per-provider open-model prices (units unlabelled; confirm)"
+    },
+    {
+      "url": "https://api-docs.deepseek.com/quick_start/pricing/",
+      "type": "P",
+      "why": "U-16 - deepseek-flash peak/off-peak rates"
+    },
+    {
+      "url": "https://ai.google.dev/gemini-api/docs/pricing",
+      "type": "P",
+      "why": "U-16 - Gemini 3.8 Flash price doubling on 2027-01-01; free tier uses content"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/github/docs/HEAD/content/site-policy/github-terms/github-terms-for-additional-products-and-features.md",
+      "type": "P",
+      "why": "U-17 - Actions not for serverless apps or unrelated activity; Pages not for online business"
+    },
+    {
+      "url": "https://docs.fly.io/about/pricing",
+      "type": "P",
+      "why": "U-17 - shared-cpu-1x US pricing for an always-on worker"
+    },
+    {
+      "url": "https://developers.cloudflare.com/workers/platform/pricing/",
+      "type": "P",
+      "why": "U-17 - Workers Paid $5 minimum, included requests and CPU"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/dbos-inc/dbos-transact-py/HEAD/README.md",
+      "type": "P",
+      "why": "U-18 - Postgres-only durable workflows, queues with rate limits, notifications"
+    },
+    {
+      "url": "https://docs.dbos.dev/python/tutorials/scheduled-workflows",
+      "type": "P",
+      "why": "U-18 - exactly-once cron and backfill semantics"
+    },
+    {
+      "url": "https://pydantic.dev/docs/ai/capabilities/durable_execution/overview/",
+      "type": "P",
+      "why": "U-18 - Pydantic AI durable execution engines incl. DBOS"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/StepenkoAnatoli/Agent/HEAD/docs/core/05-orchestration-runtime.md",
+      "type": "P",
+      "why": "U-18 - operator's own rule R9 (durable Postgres-backed agent runs)"
+    },
+    {
+      "url": "https://huggingface.co/docs/hub/spaces-zerogpu",
+      "type": "P",
+      "why": "U-19 - ZeroGPU quotas, overage $1 per 10 min, free-account hosting limits"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/huggingface/hub-docs/HEAD/docs/hub/spaces-gpus.md",
+      "type": "P",
+      "why": "U-19 - Spaces GPU rates and 'compute Space requires paid plan' statement (contradiction to resolve)"
+    },
+    {
+      "url": "https://huggingface.co/docs/inference-endpoints/pricing",
+      "type": "P",
+      "why": "U-19 - per-minute GPU endpoint rates and scale-to-zero"
+    },
+    {
+      "url": "https://docs.ghost.org/admin-api/posts/overview",
+      "type": "P",
+      "why": "U-20 - Ghost Admin API POST /admin/posts/ for automated drafts"
+    },
+    {
+      "url": "https://www.beehiiv.com/aup",
+      "type": "P",
+      "why": "U-20 - bans on fully AI-generated, mass-produced and affiliate-primary newsletters"
+    },
+    {
+      "url": "https://developers.beehiiv.com/api-reference/posts/create",
+      "type": "P",
+      "why": "U-20 - Create post API is Enterprise-only beta"
+    },
+    {
+      "url": "https://www.beehiiv.com/features/ad-network/publishers",
+      "type": "P",
+      "why": "U-21 - ad network CPM/CPC model and eligibility (no payout totals)"
+    },
+    {
+      "url": "https://www.ftc.gov/business-guidance/resources/can-spam-act-compliance-guide-business",
+      "type": "P",
+      "why": "U-21 - CAN-SPAM requirements and per-email penalties"
+    },
+    {
+      "url": "https://help.etsy.com/hc/en-us/articles/360024112614-What-Can-I-Sell-on-Etsy",
+      "type": "P",
+      "why": "U-22 - seller-prompted AI creations must disclose AI use (403 to plain fetch; use browser transport)"
+    },
+    {
+      "url": "https://www.etsy.com/legal/creativity/",
+      "type": "P",
+      "why": "U-22 - Creativity Standards (Designed by, prompt-bundle rule)"
+    },
+    {
+      "url": "https://www.etsy.com/legal/api/",
+      "type": "P",
+      "why": "U-22 - API Terms s.5(24) ban on unauthorised automated scraping"
+    },
+    {
+      "url": "https://developers.printify.com/",
+      "type": "P",
+      "why": "U-23 - Printify rate limits (600/min, 200 publishes per 30 min), token lifetimes"
+    },
+    {
+      "url": "https://printify.com/api-terms/",
+      "type": "P",
+      "why": "U-23 - IP indemnity; API products skip quality check"
+    },
+    {
+      "url": "https://developers.etsy.com/documentation/",
+      "type": "P",
+      "why": "U-23 - Seller App vs Personal vs Commercial access tiers and rate-limit docs"
+    },
+    {
+      "url": "https://huggingface.co/api/models/black-forest-labs/FLUX.1-schnell",
+      "type": "P",
+      "why": "U-23 - FLUX.1-schnell apache-2.0 licence tag for POD designs"
+    },
+    {
+      "url": "https://www.federalregister.gov/developers/document/api",
+      "type": "P",
+      "why": "U-24 - Federal Register API terms, schema and limits for the alert feed"
+    },
+    {
+      "url": "https://www.cbp.gov/trade/automated/cargo-systems-messaging-service",
+      "type": "P",
+      "why": "U-24 - CBP CSMS source format and reuse"
+    },
+    {
+      "url": "https://www.paddle.com/help/start/account-verification",
+      "type": "P",
+      "why": "U-25 - Paddle domain review, business check, Sumsub ID/liveness"
+    },
+    {
+      "url": "https://help.openai.com/en/articles/10910291-api-organization-verification",
+      "type": "P",
+      "why": "U-25 - OpenAI Verified Organization government-ID requirement (403 to plain fetch)"
+    },
+    {
+      "url": "https://docs.stripe.com/payouts",
+      "type": "P",
+      "why": "U-25 - first payout 7-14 days after first live payment; bank linking"
+    },
+    {
+      "url": "https://www.irs.gov/businesses/understanding-your-form-1099-k",
+      "type": "P",
+      "why": "U-26 - 1099-K threshold ($20,000 / 200 transactions); all income reportable"
+    },
+    {
+      "url": "https://www.irs.gov/businesses/small-businesses-self-employed/self-employment-tax-social-security-and-medicare-taxes",
+      "type": "P",
+      "why": "U-26 - 15.3% SE tax from $400 net"
+    },
+    {
+      "url": "https://www.irs.gov/businesses/small-businesses-self-employed/estimated-taxes",
+      "type": "P",
+      "why": "U-26 - quarterly 1040-ES if owing $1,000 or more"
+    },
+    {
+      "url": "https://trustmrr.com/llms.txt",
+      "type": "P",
+      "why": "U-27 - TrustMRR verification method via payment-provider API keys"
+    },
+    {
+      "url": "https://trustmrr.com/api/ai",
+      "type": "P",
+      "why": "U-27 - verified 30-day revenue snapshot behind the median ~$351 computation"
+    },
+    {
+      "url": "https://trustmrr.com/startup/altindex-llc.md",
+      "type": "P",
+      "why": "U-27 - AltIndex Stripe-verified data-API revenue and its data sources"
+    },
+    {
+      "url": "https://developers.google.com/search/docs/essentials/spam-policies",
+      "type": "P",
+      "why": "U-28 - scaled content abuse, thin affiliation, site reputation abuse"
+    },
+    {
+      "url": "https://developers.google.com/search/docs/fundamentals/using-gen-ai-content",
+      "type": "P",
+      "why": "U-28 - gen-AI content guidance incl. ecommerce AI labelling (updated 2026-10-01)"
+    },
+    {
+      "url": "https://support.reddithelp.com/hc/en-us/articles/42728983564564-Responsible-Builder-Policy",
+      "type": "P",
+      "why": "U-28 - Reddit API approval, commercial-use written approval, bot registration (403 to plain fetch)"
+    },
+    {
+      "url": "https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?lawCode=BPC&division=7.&title=&part=3.&chapter=6.&article=",
+      "type": "P",
+      "why": "U-29 - California BOT Act B&P 17941 disclosure safe harbor"
+    },
+    {
+      "url": "https://www.ftc.gov/business-guidance/resources/ftcs-endorsement-guides-what-people-are-asking",
+      "type": "P",
+      "why": "U-29 - affiliate/sponsor disclosure must be clear and near the link"
+    },
+    {
+      "url": "https://le.utah.gov/xcode/Title13/Chapter77/C13-77_2025050820250508.pdf",
+      "type": "P",
+      "why": "U-29 - Utah 13-77 generative-AI disclosure on request; up-front safe harbor"
+    },
+    {
+      "url": "https://andonlabs.com/blog/opus-5-5-gpt-6-sol-grok-4-7-vending-bench",
+      "type": "P",
+      "why": "U-30 - documented agent misconduct (fabricated quotes, ignored refunds)"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Ithiel-Labs/make-money-30-Day-experiment/HEAD/README.md",
+      "type": "P",
+      "why": "U-30 - autonomous-revenue failure: $0, KYC wall, spam suspension, token switch (ban evasion)"
+    },
+    {
+      "url": "https://ghost.org/docs/faq/mailgun-newsletters/",
+      "type": "P",
+      "why": "U-31 - Ghost states that the only bulk mail API it supports for newsletters is Mailgun"
+    },
+    {
+      "url": "https://stripe.com/global",
+      "type": "P",
+      "why": "U-32 U-01 - list of countries where a Stripe account is available (grep found no Israel)"
+    },
+    {
+      "url": "https://www.paddle.com/help/start/intro-to-paddle/which-countries-are-supported-by-paddle",
+      "type": "P",
+      "why": "U-32 - Paddle's supported seller countries (Israel not confirmed by plain fetch; capture with browser)"
+    },
+    {
+      "url": "https://www.irs.gov/businesses/international-businesses/israel-tax-treaty-documents",
+      "type": "P",
+      "why": "U-32 - US-Israel treaty, which sets W-8BEN withholding on US-source payouts"
+    },
+    {
+      "url": "https://docs.apify.com/platform/actors/publishing/quality-score",
+      "type": "P",
+      "why": "U-33 - quality score drives Store and MCP search-actors ranking; reliability and automated tests"
+    },
+    {
+      "url": "https://shopify.dev/docs/apps/launch/distribution/revenue-share",
+      "type": "P",
+      "why": "U-34 - 0% share on first $1M lifetime revenue, 15% above, $19 registration"
+    },
+    {
+      "url": "https://shopify.dev/docs/apps/launch/app-requirements-checklist",
+      "type": "P",
+      "why": "U-34 - app review requirements (human gate before listing)"
+    },
+    {
+      "url": "https://docs.aws.amazon.com/marketplace/latest/userguide/seller-eligibility.html",
+      "type": "P",
+      "why": "U-35 U-32 - eligible seller jurisdictions (Israel and US listed), tax and bank requirements"
+    },
+    {
+      "url": "https://docs.aws.amazon.com/data-exchange/latest/userguide/provider-getting-started.html",
+      "type": "P",
+      "why": "U-35 - provider onboarding via a support case, support and update obligations"
+    },
+    {
+      "url": "https://www.ecfr.gov/current/title-19/chapter-I/part-111/subpart-A/section-111.1",
+      "type": "P",
+      "why": "U-36 - definition of 'customs business' reserved to licensed brokers"
+    },
+    {
+      "url": "https://www.federalregister.gov/reader-aids/understanding-the-federal-register/terms-of-use",
+      "type": "P",
+      "why": "U-24 - Federal Register terms of use and reuse rights for derived alerts"
+    },
+    {
+      "url": "https://www.paddle.com/help/start/intro-to-paddle/what-is-paddle",
+      "type": "P",
+      "why": "U-32 - Paddle as merchant of record for a non-US seller: what Paddle handles (tax, invoicing, payouts)"
+    },
+    {
+      "url": "https://www.irs.gov/individuals/international-taxpayers/tax-treaties",
+      "type": "P",
+      "why": "U-32 U-37 - treaty benefits a foreign individual claims on W-8BEN"
+    },
+    {
+      "url": "https://www.gov.il/en/departments/israel_tax_authority",
+      "type": "P",
+      "why": "U-37 - Israel Tax Authority entry page for registration of a self-employed dealer (osek patur / osek murshe)"
+    }
+  ]
 }
