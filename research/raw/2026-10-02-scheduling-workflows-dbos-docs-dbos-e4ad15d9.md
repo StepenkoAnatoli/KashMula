@@ -1,0 +1,286 @@
+---
+url: https://docs.dbos.dev/python/tutorials/scheduled-workflows
+retrieved: 2026-10-02
+command: firecrawl scrape https://docs.dbos.dev/python/tutorials/scheduled-workflows --only-main-content --json
+statusCode: 200
+transport: firecrawl-cli
+completeness: full
+title: Scheduling Workflows | DBOS Docs
+---
+[Skip to main content](https://docs.dbos.dev/python/tutorials/scheduled-workflows#__docusaurus_skipToContent_fallback)
+
+On this page
+
+You can schedule DBOS [workflows](https://docs.dbos.dev/python/tutorials/workflow-tutorial) to run on a cron schedule.
+Schedules are stored in the database and can be created, paused, resumed, and deleted at runtime.
+Each time a schedule fires, its workflow is executed by exactly one worker process.
+
+To schedule a workflow, first define a workflow that takes two arguments: a `datetime` (the scheduled execution time) and a context object:
+
+```python
+from datetime import datetime
+
+from typing import Any
+
+from dbos import DBOS
+
+@DBOS.workflow()
+
+def my_periodic_task(scheduled_time: datetime, context: Any):
+
+    DBOS.logger.info(f"Running task scheduled for {scheduled_time} with context {context}")
+```
+
+Then, create a schedule for it using [`DBOS.create_schedule`](https://docs.dbos.dev/python/reference/contexts#create_schedule) with a [crontab](https://en.wikipedia.org/wiki/Cron) expression:
+
+```python
+DBOS.create_schedule(
+
+    schedule_name="my-task-schedule", # The schedule name is a unique identifier of the schedule
+
+    workflow_fn=my_periodic_task,
+
+    schedule="*/5 * * * *",  # Every 5 minutes
+
+    context="my context", # The context is passed into every iteration of the workflow
+
+)
+```
+
+Because schedules are stored in the system database, `DBOS.create_schedule` and the other schedule management methods must be called after [`DBOS.launch()`](https://docs.dbos.dev/python/reference/dbos-class#launch).
+
+Note that `DBOS.create_schedule` will fail if the schedule already exists.
+If you're defining a set of static schedules to be created on program start, you can instead use `DBOS.apply_schedules` to create them atomically, updating them if they already exist:
+
+```python
+DBOS.apply_schedules([\
+\
+    {\
+\
+        "schedule_name": "schedule-a",\
+\
+        "workflow_fn": workflow_a,\
+\
+        "schedule": "*/10 * * * *",  # Every 10 minutes\
+\
+        "context": "context-a",\
+\
+    },\
+\
+    {\
+\
+        "schedule_name": "schedule-b",\
+\
+        "workflow_fn": workflow_b,\
+\
+        "schedule": "0 0 * * *",  # Every day at midnight\
+\
+        "context": "context-b",\
+\
+    },\
+\
+])
+```
+
+When `DBOS.apply_schedules` updates an existing schedule, it replaces the entire definition with the new entry, so any optional field left unset is cleared.
+For example, if a schedule was routed to a named queue and you re-apply it without setting `queue_name`, it reverts to the internal queue.
+The schedule's status and last-fired time are preserved.
+
+To learn more about crontab syntax, see [this guide](https://docs.gitlab.com/ee/topics/cron/) or [this crontab editor](https://crontab.guru/).
+DBOS uses [croniter](https://pypi.org/project/croniter/) to parse cron schedules, using seconds as an optional first field ( [`second_at_beginning=True`](https://pypi.org/project/croniter/#about-second-repeats)).
+Valid cron schedules contain 5 or 6 items, separated by spaces:
+
+```text
+ ┌────────────── second (optional)
+
+ │ ┌──────────── minute
+
+ │ │ ┌────────── hour
+
+ │ │ │ ┌──────── day of month
+
+ │ │ │ │ ┌────── month
+
+ │ │ │ │ │ ┌──── day of week
+
+ │ │ │ │ │ │
+
+ │ │ │ │ │ │
+
+ * * * * * *
+```
+
+Cron expressions are evaluated in UTC by default. You can set the `cron_timezone` parameter to an [IANA timezone name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) (e.g. `"America/New_York"`) to evaluate the expression in a different timezone.
+
+You can dynamically create many schedules for the same workflow.
+For example, if you want to perform certain actions periodically for each of your customers, you can create one schedule per customer, using customer ID as context so each workflow knows which customer to act on:
+
+```python
+from datetime import datetime
+
+from dbos import DBOS
+
+@DBOS.workflow()
+
+def customer_workflow(scheduled_time: datetime, customer_id: str):
+
+    ...
+
+def on_customer_registration(customer_id: str):
+
+    DBOS.create_schedule(
+
+        schedule_name=f"customer-{customer_id}-sync",
+
+        workflow_fn=customer_workflow,
+
+        schedule="0 * * * *",  # Every hour
+
+        context=customer_id,
+
+    )
+```
+
+Note that scheduling is not supported for workflows that are methods on [configured instances](https://docs.dbos.dev/python/tutorials/classes). Scheduled workflows should be plain functions or `@staticmethod` or `@classmethod` class members.
+
+### Managing Schedules [​](https://docs.dbos.dev/python/tutorials/scheduled-workflows\#managing-schedules "Direct link to Managing Schedules")
+
+You can pause, resume, and delete schedules at runtime:
+
+```python
+# Pause a schedule so it stops firing
+
+DBOS.pause_schedule("my-task-schedule")
+
+# Resume a paused schedule
+
+DBOS.resume_schedule("my-task-schedule")
+
+# Delete a schedule
+
+DBOS.delete_schedule("my-task-schedule")
+```
+
+You can also list and inspect schedules:
+
+```python
+# List all active schedules
+
+schedules = DBOS.list_schedules(status="ACTIVE")
+
+# Get a specific schedule by name
+
+schedule = DBOS.get_schedule("my-task-schedule")
+```
+
+Each workflow enqueued by a schedule is tagged with that schedule's name, which is recorded in its [`WorkflowStatus`](https://docs.dbos.dev/python/reference/contexts#workflow-status) and is queryable.
+You can retrieve all runs of a given schedule by passing `schedule_name` to [`DBOS.list_workflows`](https://docs.dbos.dev/python/reference/contexts#list_workflows):
+
+```python
+# Retrieve all workflows enqueued by a schedule
+
+runs = DBOS.list_workflows(schedule_name="my-task-schedule")
+```
+
+### Backfilling and Triggering [​](https://docs.dbos.dev/python/tutorials/scheduled-workflows\#backfilling-and-triggering "Direct link to Backfilling and Triggering")
+
+If a schedule was paused or your application was offline, you can backfill missed executions using [`DBOS.backfill_schedule`](https://docs.dbos.dev/python/reference/contexts#backfill_schedule).
+Already-executed times are automatically skipped:
+
+```python
+from datetime import datetime, timezone
+
+DBOS.backfill_schedule(
+
+    "my-task-schedule",
+
+    start=datetime(2025, 1, 1, tzinfo=timezone.utc),
+
+    end=datetime(2025, 1, 2, tzinfo=timezone.utc),
+
+)
+```
+
+Alternatively, you can set `automatic_backfill=True` when creating a schedule so that missed executions are automatically backfilled whenever your application starts or a paused schedule is resumed.
+
+Backfills (manual or automatic) compute missed executions using the schedule's **current** cron expression.
+If you update a schedule's cron expression and then backfill, the backfill generates one execution per tick of the new expression over the requested window—including times the old expression would never have matched.
+For example, changing a daily schedule to an hourly one and then backfilling yesterday enqueues 24 executions, not 1.
+
+You can also immediately trigger a schedule using [`DBOS.trigger_schedule`](https://docs.dbos.dev/python/reference/contexts#trigger_schedule):
+
+```python
+handle = DBOS.trigger_schedule("my-task-schedule")
+```
+
+### Scheduling to Queues [​](https://docs.dbos.dev/python/tutorials/scheduled-workflows\#scheduling-to-queues "Direct link to Scheduling to Queues")
+
+By default, scheduled workflows are enqueued on an internal queue.
+You can instead enqueue them on a declared [queue](https://docs.dbos.dev/python/tutorials/queue-tutorial) to manage their concurrency or rate limits.
+Pass the `queue_name` parameter when creating the schedule:
+
+```python
+from dbos import DBOS
+
+DBOS.register_queue("scheduled_queue", global_concurrency=1)
+
+DBOS.create_schedule(
+
+    schedule_name="my-task-schedule",
+
+    workflow_fn=my_periodic_task,
+
+    schedule="*/5 * * * *",
+
+    queue_name="scheduled_queue",
+
+)
+```
+
+This ensures that scheduled workflow executions respect the queue's flow control settings.
+
+### Managing Schedules from Another Application [​](https://docs.dbos.dev/python/tutorials/scheduled-workflows\#managing-schedules-from-another-application "Direct link to Managing Schedules from Another Application")
+
+You can manage schedules from outside your DBOS application using the [DBOS Client](https://docs.dbos.dev/python/reference/client#workflow-schedules).
+The client accepts workflow names as strings instead of function references:
+
+```python
+from dbos import DBOSClient
+
+client = DBOSClient(
+
+    system_database_url=os.environ["DBOS_SYSTEM_DATABASE_URL"],
+
+    # The name of the application that owns and runs the schedule
+
+    application_name="my-app",
+
+)
+
+client.create_schedule(
+
+    schedule_name="my-task-schedule",
+
+    workflow_name="my_periodic_task",
+
+    schedule="*/5 * * * *",
+
+    context="my context",
+
+)
+```
+
+### How Scheduling Works [​](https://docs.dbos.dev/python/tutorials/scheduled-workflows\#how-scheduling-works "Direct link to How Scheduling Works")
+
+Under the hood, DBOS constructs an [idempotency key](https://docs.dbos.dev/python/tutorials/workflow-tutorial#workflow-ids-and-idempotency) for each scheduled workflow execution.
+The key is a concatenation of the schedule name and the scheduled time, ensuring each scheduled invocation occurs exactly once while your application is active.
+
+For the full API reference, see [Workflow Schedules](https://docs.dbos.dev/python/reference/contexts#workflow-schedules).
+
+- [Managing Schedules](https://docs.dbos.dev/python/tutorials/scheduled-workflows#managing-schedules)
+- [Backfilling and Triggering](https://docs.dbos.dev/python/tutorials/scheduled-workflows#backfilling-and-triggering)
+- [Scheduling to Queues](https://docs.dbos.dev/python/tutorials/scheduled-workflows#scheduling-to-queues)
+- [Managing Schedules from Another Application](https://docs.dbos.dev/python/tutorials/scheduled-workflows#managing-schedules-from-another-application)
+- [How Scheduling Works](https://docs.dbos.dev/python/tutorials/scheduled-workflows#how-scheduling-works)
+
+Chat Widget

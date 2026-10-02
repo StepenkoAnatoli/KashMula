@@ -45,3 +45,37 @@ carries the design, `S` secondary is context, `L` lead-only is a hint and never 
 | https://huggingface.co/PaddlePaddle/PaddleOCR-VL | P | PaddlePaddle/PaddleOCR-VL · Hugging Face | 2026-10-02 | U-13 - PaddleOCR-VL Apache-2.0 |
 | https://www.anthropic.com/legal/commercial-terms | P | Commercial Terms of Service \ Anthropic | 2026-10-02 | U-14 - Commercial Terms governing API and Agent SDK use and output ownership |
 | https://www.anthropic.com/legal/aup | P | Usage Policy \ Anthropic | 2026-10-02 | U-14 - no automated account creation; AI disclosure for consumer-facing agents; no spam or fake reviews |
+| https://code.claude.com/docs/en/agent-sdk/overview | P | Agent SDK overview - Claude Code Docs | 2026-10-02 | U-14 - third parties may not offer claude.ai login; Commercial Terms govern the SDK |
+| https://platform.claude.com/docs/en/about-claude/pricing | P | Pricing - Claude Platform Docs | 2026-10-02 | U-15 - Claude per-MTok prices, batch and cache discounts, tokenizer note |
+| https://platform.claude.com/docs/en/api/rate-limits | P | Rate limits - Claude Platform Docs | 2026-10-02 | U-15 - monthly spend caps by tier and custom limits returning HTTP 400 |
+| https://developers.openai.com/api/docs/pricing | P | Pricing \| OpenAI API | 2026-10-02 | U-15 - OpenAI model prices incl. cheap gpt-6-luna tier |
+| https://router.huggingface.co/v1/models | P | models | 2026-10-02 | U-16 - live per-provider open-model prices (units unlabelled; confirm) |
+| https://api-docs.deepseek.com/quick_start/pricing/ | P | Models & Pricing \| DeepSeek API Docs | 2026-10-02 | U-16 - deepseek-flash peak/off-peak rates |
+| https://ai.google.dev/gemini-api/docs/pricing | P | Gemini Developer API pricing  \|  Gemini API  \|  Google AI for Developers | 2026-10-02 | U-16 - Gemini 3.8 Flash price doubling on 2027-01-01; free tier uses content |
+| https://raw.githubusercontent.com/github/docs/HEAD/content/site-policy/github-terms/github-terms-for-additional-products-and-features.md | P | github-terms-for-additional-products-and-features-md | 2026-10-02 | U-17 - Actions not for serverless apps or unrelated activity; Pages not for online business |
+| https://docs.fly.io/about/pricing | P | Fly.io Resource Pricing - Fly.io | 2026-10-02 | U-17 - shared-cpu-1x US pricing for an always-on worker |
+| https://developers.cloudflare.com/workers/platform/pricing/ | P | Pricing · Cloudflare Workers docs | 2026-10-02 | U-17 - Workers Paid $5 minimum, included requests and CPU |
+| https://raw.githubusercontent.com/dbos-inc/dbos-transact-py/HEAD/README.md | P | readme-md | 2026-10-02 | U-18 - Postgres-only durable workflows, queues with rate limits, notifications |
+| https://docs.dbos.dev/python/tutorials/scheduled-workflows | P | Scheduling Workflows \| DBOS Docs | 2026-10-02 | U-18 - exactly-once cron and backfill semantics |
+| https://pydantic.dev/docs/ai/capabilities/durable_execution/overview/ | P | Durable Execution \| Pydantic Docs | 2026-10-02 | U-18 - Pydantic AI durable execution engines incl. DBOS |
+| https://raw.githubusercontent.com/StepenkoAnatoli/Agent/HEAD/docs/core/05-orchestration-runtime.md | P | 05-orchestration-runtime-md | 2026-10-02 | U-18 - operator's own rule R9 (durable Postgres-backed agent runs) |
+| https://huggingface.co/docs/hub/spaces-zerogpu | P | Spaces ZeroGPU: Dynamic GPU Allocation for Spaces · Hugging Face | 2026-10-02 | U-19 - ZeroGPU quotas, overage $1 per 10 min, free-account hosting limits |
+| https://raw.githubusercontent.com/huggingface/hub-docs/HEAD/docs/hub/spaces-gpus.md | P | spaces-gpus-md | 2026-10-02 | U-19 - Spaces GPU rates and 'compute Space requires paid plan' statement (contradiction to resolve) |
+| https://huggingface.co/docs/inference-endpoints/pricing | P | Pricing · Hugging Face | 2026-10-02 | U-19 - per-minute GPU endpoint rates and scale-to-zero |
+| https://docs.ghost.org/admin-api/posts/overview | P | Overview - Ghost Developer Docs | 2026-10-02 | U-20 - Ghost Admin API POST /admin/posts/ for automated drafts |
+| https://www.beehiiv.com/aup | P | Acceptable Use Policy - beehiiv | 2026-10-02 | U-20 - bans on fully AI-generated, mass-produced and affiliate-primary newsletters |
+| https://developers.beehiiv.com/api-reference/posts/create | P | Create post \| beehiiv \| Developer Documentation | 2026-10-02 | U-20 - Create post API is Enterprise-only beta |
+| https://www.beehiiv.com/features/ad-network/publishers | P | Ad Network for Publishers - Features - beehiiv | 2026-10-02 | U-21 - ad network CPM/CPC model and eligibility (no payout totals) |
+| https://www.ftc.gov/business-guidance/resources/can-spam-act-compliance-guide-business | P | CAN-SPAM Act: A Compliance Guide for Business \| Federal Trade Commission | 2026-10-02 | U-21 - CAN-SPAM requirements and per-email penalties |
+| https://help.etsy.com/hc/en-us/articles/360024112614-What-Can-I-Sell-on-Etsy | P | What Can I Sell on Etsy? – Etsy Help | 2026-10-02 | U-22 - seller-prompted AI creations must disclose AI use (403 to plain fetch; use browser transport) |
+| https://www.etsy.com/legal/creativity/ | P | Etsy's Creativity Standards - Our House Rules \| Etsy | 2026-10-02 | U-22 - Creativity Standards (Designed by, prompt-bundle rule) |
+| https://www.etsy.com/legal/api/ | P | API Terms of Use - Our House Rules \| Etsy | 2026-10-02 | U-22 - API Terms s.5(24) ban on unauthorised automated scraping |
+| https://developers.printify.com/ | P | History – Printify API Reference | 2026-10-02 | U-23 - Printify rate limits (600/min, 200 publishes per 30 min), token lifetimes |
+| https://printify.com/api-terms/ | P | Printify API Terms of Service | 2026-10-02 | U-23 - IP indemnity; API products skip quality check |
+| https://developers.etsy.com/documentation/ | P | Etsy Open API v3 \| Etsy Open API v3 | 2026-10-02 | U-23 - Seller App vs Personal vs Commercial access tiers and rate-limit docs |
+| https://huggingface.co/api/models/black-forest-labs/FLUX.1-schnell | P | flux-1-schnell | 2026-10-02 | U-23 - FLUX.1-schnell apache-2.0 licence tag for POD designs |
+| https://www.cbp.gov/trade/automated/cargo-systems-messaging-service | P | Cargo Systems Messaging Service \| U.S. Customs and Border Protection | 2026-10-02 | U-24 - CBP CSMS source format and reuse |
+| https://www.paddle.com/help/start/account-verification | P | Account Verification - Help Center - Paddle | 2026-10-02 | U-25 - Paddle domain review, business check, Sumsub ID/liveness |
+| https://help.openai.com/en/articles/10910291-api-organization-verification | P | API Organization Verification \| OpenAI Help Center | 2026-10-02 | U-25 - OpenAI Verified Organization government-ID requirement (403 to plain fetch) |
+| https://docs.stripe.com/payouts | P | Receive payouts \| Stripe Documentation | 2026-10-02 | U-25 - first payout 7-14 days after first live payment; bank linking |
+| https://www.irs.gov/businesses/understanding-your-form-1099-k | P | Understanding your Form 1099-K \| Internal Revenue Service | 2026-10-02 | U-26 - 1099-K threshold ($20,000 / 200 transactions); all income reportable |
