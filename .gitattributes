@@ -1,0 +1,14 @@
+# The corpus's line endings are integrity, not style.
+#
+# A capture's body hash is taken over the LF bytes the collector fetched. git's smudge
+# filter rewrites every text file on a default Windows checkout (core.autocrlf=true), so
+# without this file the whole corpus fails `body-unmodified` on arrival with nothing
+# actually wrong with it. This file outranks a reader's core.autocrlf. See ADR-0020.
+
+research/raw/* text eol=lf
+*.jsonl text eol=lf
+research/*.md text eol=lf
+
+# Captures whose fetched body carries CRLF bytes are stored byte-for-byte: the ledger hash
+# covers the bytes as fetched, and LF normalisation on add would alter the evidence.
+research/raw/2026-10-02-license-huggingface-78764217.md -text

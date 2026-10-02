@@ -1,0 +1,114 @@
+# Sources
+
+Every page this project has fetched, and what it was used for. `P` primary/official
+carries the design, `S` secondary is context, `L` lead-only is a hint and never proof.
+
+| URL | Type | Title | Retrieved | Used for |
+|---|---|---|---|---|
+| https://www.irs.gov/forms-pubs/about-form-w-9 | P | About Form W-9, Request for Taxpayer Identification Number and Certification \| Internal Revenue Service | 2026-10-02 | U-01 - US-person certification form required by US payers and marketplaces |
+| https://www.irs.gov/forms-pubs/about-form-w-8-ben | P | About Form W-8 BEN, Certificate of Foreign Status of Beneficial Owner for United States Tax Withholding and Reporting (Individuals) \| Internal Revenue Service | 2026-10-02 | U-01 - foreign-individual certification form, applicable if the operator is an Israeli tax resident |
+| https://support.stripe.com/questions/requirements-for-having-a-us-stripe-account | P | Requirements for having a US Stripe account : Stripe: Help & Support | 2026-10-02 | U-01 - Stripe US account needs a US-present owner, physical address and EIN or SSN/ITIN |
+| https://docs.apify.com/platform/actors/publishing/monetize/monthly-payouts | P | Manage payouts \| Platform \| Apify Documentation | 2026-10-02 | U-02 - payout methods, minimums, ID verification, no ACH to US, invoice and payout dates |
+| https://docs.apify.com/legal/store-publishing-terms-and-conditions | P | Apify Store Publishing Terms and Conditions \| Apify Documentation | 2026-10-02 | U-02 - 80% minus platform costs, KYC, forfeiture of balances under threshold after 12 months (updated 2026-09-15) |
+| https://docs.apify.com/platform/actors/publishing/monetize/pricing-and-costs | P | Actor pricing and costs \| Platform \| Apify Documentation | 2026-10-02 | U-03 - profit = (0.8 x revenue) - platform costs; only paid-plan users count |
+| https://apify.com/pricing | P | Apify pricing - flexible plan + pay as you go · Apify | 2026-10-02 | U-03 - platform usage (compute) rates that are deducted from creator revenue |
+| https://blog.apify.com/migrating-to-pay-per-event-pricing/ | P | Rental to pay-per-event pricing: migrate your Actor | 2026-10-02 | U-03 - rental sunset 1 Oct 2026; unmigrated Actors earn $0 |
+| https://docs.apify.com/legal/acceptable-use-policy | P | Apify Acceptable Use Policy \| Apify Documentation | 2026-10-02 | U-04 - what Actors and sources the Store permits |
+| https://docs.apify.com/platform/actors/publishing/monetize | P | Monetize Actors \| Platform \| Apify Documentation | 2026-10-02 | U-04 - agentic payments conditions (PPE, limited permissions, no Standby, developer KYC) |
+| https://apify.com/change-log/pay-for-apify-actors-with-x402 | P | Pay for Apify Actors with x402 · Change log · Apify | 2026-10-02 | U-04 - since 2026-06-26 agents pay for eligible Actors in USDC via x402 without an account |
+| https://apify.com/partners/actor-developers | P | Publish a tool once. Earn every time it runs. · Apify | 2026-10-02 | U-05 - self-reported $1.6M/month to 4,500 developers; 79,601 tools |
+| https://help.apify.com/en/articles/8684010-make-money-publishing-your-actors-on-apify-store | P | Make money publishing your Actors on Apify Store \| Apify help & support | 2026-10-02 | U-05 - 20% commission; claims top creators exceed $10k MRR |
+| https://blog.apify.com/building-98-actors-on-apify-store/ | S | How I built 98 Actors on Apify Store in 6 months | 2026-10-02 | U-05 - first-person hours and MAU for a 98-Actor portfolio (resolve the 8-11 h vs 15-20 h conflict) |
+| https://docs.opensaas.sh/blog/2025-05-21-saas-cost-marketing-breakdown/ | S | Here's my SaaS Cost, Profit, and Marketing Breakdown \| OpenSaaS.sh | 2026-10-02 | U-06 - CoverLetterGPT claimed MRR, costs and maintenance hours on Open SaaS |
+| https://trustmrr.com/api/ai/discovery | P | discovery | 2026-10-02 | U-06 - verified revenue of recently added and fastest-growing small SaaS comparables |
+| https://docs.rapidapi.com/docs/payouts-and-finance | P | Payouts and Finance | 2026-10-02 | U-06 - 25% fee and PayPal-only payouts if C3 is also listed on Rapid |
+| https://raw.githubusercontent.com/AsherKasper/stablecoin-payment-rails/HEAD/README.md | L | readme-md | 2026-10-02 | U-07 - agentic.market census - $16.5K gross per 30 days, 15 endpoints over $100/month |
+| https://www.x402.org/ | P | x402 | 2026-10-02 | U-07 - headline x402 counter (to compare against reports that it is frozen) |
+| https://www.theblock.co/post/408574/visa-stablecoins-agentic-ai-commerce | S | Visa says stablecoins will power micro-commerce in AI agentic economy \| The Block | 2026-10-02 | U-07 - Visa/Artemis adjusted x402 volume (~$15M) and MPP early volume |
+| https://docs.stripe.com/payments/machine | P | Machine payments \| Stripe Documentation | 2026-10-02 | U-08 - MPP/x402 availability, New York exclusion, minimums, fiat settlement |
+| https://docs.cdp.coinbase.com/x402/core-concepts/facilitator | P | CDP Facilitator - Coinbase Developer Documentation | 2026-10-02 | U-08 - 1,000 free settlements/month, then $0.001 each; supported networks |
+| https://raw.githubusercontent.com/stripe-samples/machine-payments/HEAD/README.md | P | readme-md | 2026-10-02 | U-08 - reference implementation and licence for a monetised MCP tool |
+| https://docs.stripe.com/payments/managed-payments/eligibility | P | Managed Payments eligibility \| Stripe Documentation | 2026-10-02 | U-09 - 'fully automated digital product' requirement, supported locations, tax codes |
+| https://docs.stripe.com/payments/managed-payments | P | Managed Payments \| Stripe Documentation | 2026-10-02 | U-09 - Stripe as merchant of record handles tax, fraud, disputes |
+| https://stripe.com/pricing | P | Pricing & Fees | 2026-10-02 | U-09 - 2.9% + 30c, Managed Payments +3.5%, $15 dispute fee |
+| https://gumroad.com/prohibited | P | Prohibited products on Gumroad | 2026-10-02 | U-10 - ban on selling AI tool/content-generation access fulfilled outside Gumroad |
+| https://www.paddle.com/help/start/intro-to-paddle/what-am-i-not-allowed-to-sell-on-paddle | P | Understanding Paddle’s Acceptable Use Policy (AUP): What Am I Not Allowed To Sell? - Help Center - Paddle | 2026-10-02 | U-10 - Paddle bans on likeness generation, human services, social-engagement tools |
+| https://stripe.com/legal/restricted-businesses | P | Prohibited and Restricted Businesses \| Stripe | 2026-10-02 | U-10 - Stripe prohibited and restricted businesses, incl. get-rich-quick and engagement sales |
+| https://huggingface.co/Qwen/Qwen3.8-27B/raw/main/LICENSE | P | license | 2026-10-02 | U-11 - Qwen3.8-27B Apache-2.0 licence text |
+| https://huggingface.co/openai/gpt-oss-120b/raw/main/USAGE_POLICY | P | usage-policy | 2026-10-02 | U-11 - gpt-oss Apache-2.0 plus USAGE_POLICY file |
+| https://ai.google.dev/gemma/docs/gemma_4_license | P | Apache License 2.0  \|  Gemma  \|  Google AI for Developers | 2026-10-02 | U-11 - Gemma 4 licence and linked prohibited-use policy scope |
+| https://huggingface.co/black-forest-labs/FLUX.2-klein-4B | P | black-forest-labs/FLUX.2-klein-4B · Hugging Face | 2026-10-02 | U-12 - klein 4B Apache-2.0 (the 9B variant is non-commercial) |
+| https://huggingface.co/ZhengPeng7/BiRefNet | P | ZhengPeng7/BiRefNet · Hugging Face | 2026-10-02 | U-12 - BiRefNet MIT background removal |
+| https://huggingface.co/Qwen/Qwen-Image-Edit-2511 | P | Qwen/Qwen-Image-Edit-2511 · Hugging Face | 2026-10-02 | U-12 - Qwen-Image-Edit-2511 Apache-2.0 (unlike Qwen-Image-2.1) |
+| https://huggingface.co/zai-org/GLM-OCR | P | zai-org/GLM-OCR · Hugging Face | 2026-10-02 | U-13 - GLM-OCR MIT licence and capability |
+| https://huggingface.co/deepseek-ai/DeepSeek-OCR-2 | P | deepseek-ai/DeepSeek-OCR-2 · Hugging Face | 2026-10-02 | U-13 - DeepSeek-OCR-2 Apache-2.0 |
+| https://huggingface.co/PaddlePaddle/PaddleOCR-VL | P | PaddlePaddle/PaddleOCR-VL · Hugging Face | 2026-10-02 | U-13 - PaddleOCR-VL Apache-2.0 |
+| https://www.anthropic.com/legal/commercial-terms | P | Commercial Terms of Service \ Anthropic | 2026-10-02 | U-14 - Commercial Terms governing API and Agent SDK use and output ownership |
+| https://www.anthropic.com/legal/aup | P | Usage Policy \ Anthropic | 2026-10-02 | U-14 - no automated account creation; AI disclosure for consumer-facing agents; no spam or fake reviews |
+| https://code.claude.com/docs/en/agent-sdk/overview | P | Agent SDK overview - Claude Code Docs | 2026-10-02 | U-14 - third parties may not offer claude.ai login; Commercial Terms govern the SDK |
+| https://platform.claude.com/docs/en/about-claude/pricing | P | Pricing - Claude Platform Docs | 2026-10-02 | U-15 - Claude per-MTok prices, batch and cache discounts, tokenizer note |
+| https://platform.claude.com/docs/en/api/rate-limits | P | Rate limits - Claude Platform Docs | 2026-10-02 | U-15 - monthly spend caps by tier and custom limits returning HTTP 400 |
+| https://developers.openai.com/api/docs/pricing | P | Pricing \| OpenAI API | 2026-10-02 | U-15 - OpenAI model prices incl. cheap gpt-6-luna tier |
+| https://router.huggingface.co/v1/models | P | models | 2026-10-02 | U-16 - live per-provider open-model prices (units unlabelled; confirm) |
+| https://api-docs.deepseek.com/quick_start/pricing/ | P | Models & Pricing \| DeepSeek API Docs | 2026-10-02 | U-16 - deepseek-flash peak/off-peak rates |
+| https://ai.google.dev/gemini-api/docs/pricing | P | Gemini Developer API pricing  \|  Gemini API  \|  Google AI for Developers | 2026-10-02 | U-16 - Gemini 3.8 Flash price doubling on 2027-01-01; free tier uses content |
+| https://raw.githubusercontent.com/github/docs/HEAD/content/site-policy/github-terms/github-terms-for-additional-products-and-features.md | P | github-terms-for-additional-products-and-features-md | 2026-10-02 | U-17 - Actions not for serverless apps or unrelated activity; Pages not for online business |
+| https://docs.fly.io/about/pricing | P | Fly.io Resource Pricing - Fly.io | 2026-10-02 | U-17 - shared-cpu-1x US pricing for an always-on worker |
+| https://developers.cloudflare.com/workers/platform/pricing/ | P | Pricing · Cloudflare Workers docs | 2026-10-02 | U-17 - Workers Paid $5 minimum, included requests and CPU |
+| https://raw.githubusercontent.com/dbos-inc/dbos-transact-py/HEAD/README.md | P | readme-md | 2026-10-02 | U-18 - Postgres-only durable workflows, queues with rate limits, notifications |
+| https://docs.dbos.dev/python/tutorials/scheduled-workflows | P | Scheduling Workflows \| DBOS Docs | 2026-10-02 | U-18 - exactly-once cron and backfill semantics |
+| https://pydantic.dev/docs/ai/capabilities/durable_execution/overview/ | P | Durable Execution \| Pydantic Docs | 2026-10-02 | U-18 - Pydantic AI durable execution engines incl. DBOS |
+| https://raw.githubusercontent.com/StepenkoAnatoli/Agent/HEAD/docs/core/05-orchestration-runtime.md | P | 05-orchestration-runtime-md | 2026-10-02 | U-18 - operator's own rule R9 (durable Postgres-backed agent runs) |
+| https://huggingface.co/docs/hub/spaces-zerogpu | P | Spaces ZeroGPU: Dynamic GPU Allocation for Spaces · Hugging Face | 2026-10-02 | U-19 - ZeroGPU quotas, overage $1 per 10 min, free-account hosting limits |
+| https://raw.githubusercontent.com/huggingface/hub-docs/HEAD/docs/hub/spaces-gpus.md | P | spaces-gpus-md | 2026-10-02 | U-19 - Spaces GPU rates and 'compute Space requires paid plan' statement (contradiction to resolve) |
+| https://huggingface.co/docs/inference-endpoints/pricing | P | Pricing · Hugging Face | 2026-10-02 | U-19 - per-minute GPU endpoint rates and scale-to-zero |
+| https://docs.ghost.org/admin-api/posts/overview | P | Overview - Ghost Developer Docs | 2026-10-02 | U-20 - Ghost Admin API POST /admin/posts/ for automated drafts |
+| https://www.beehiiv.com/aup | P | Acceptable Use Policy - beehiiv | 2026-10-02 | U-20 - bans on fully AI-generated, mass-produced and affiliate-primary newsletters |
+| https://developers.beehiiv.com/api-reference/posts/create | P | Create post \| beehiiv \| Developer Documentation | 2026-10-02 | U-20 - Create post API is Enterprise-only beta |
+| https://www.beehiiv.com/features/ad-network/publishers | P | Ad Network for Publishers - Features - beehiiv | 2026-10-02 | U-21 - ad network CPM/CPC model and eligibility (no payout totals) |
+| https://www.ftc.gov/business-guidance/resources/can-spam-act-compliance-guide-business | P | CAN-SPAM Act: A Compliance Guide for Business \| Federal Trade Commission | 2026-10-02 | U-21 - CAN-SPAM requirements and per-email penalties |
+| https://help.etsy.com/hc/en-us/articles/360024112614-What-Can-I-Sell-on-Etsy | P | What Can I Sell on Etsy? – Etsy Help | 2026-10-02 | U-22 - seller-prompted AI creations must disclose AI use (403 to plain fetch; use browser transport) |
+| https://www.etsy.com/legal/creativity/ | P | Etsy's Creativity Standards - Our House Rules \| Etsy | 2026-10-02 | U-22 - Creativity Standards (Designed by, prompt-bundle rule) |
+| https://www.etsy.com/legal/api/ | P | API Terms of Use - Our House Rules \| Etsy | 2026-10-02 | U-22 - API Terms s.5(24) ban on unauthorised automated scraping |
+| https://developers.printify.com/ | P | History – Printify API Reference | 2026-10-02 | U-23 - Printify rate limits (600/min, 200 publishes per 30 min), token lifetimes |
+| https://printify.com/api-terms/ | P | Printify API Terms of Service | 2026-10-02 | U-23 - IP indemnity; API products skip quality check |
+| https://developers.etsy.com/documentation/ | P | Etsy Open API v3 \| Etsy Open API v3 | 2026-10-02 | U-23 - Seller App vs Personal vs Commercial access tiers and rate-limit docs |
+| https://huggingface.co/api/models/black-forest-labs/FLUX.1-schnell | P | flux-1-schnell | 2026-10-02 | U-23 - FLUX.1-schnell apache-2.0 licence tag for POD designs |
+| https://www.cbp.gov/trade/automated/cargo-systems-messaging-service | P | Cargo Systems Messaging Service \| U.S. Customs and Border Protection | 2026-10-02 | U-24 - CBP CSMS source format and reuse |
+| https://www.paddle.com/help/start/account-verification | P | Account Verification - Help Center - Paddle | 2026-10-02 | U-25 - Paddle domain review, business check, Sumsub ID/liveness |
+| https://help.openai.com/en/articles/10910291-api-organization-verification | P | API Organization Verification \| OpenAI Help Center | 2026-10-02 | U-25 - OpenAI Verified Organization government-ID requirement (403 to plain fetch) |
+| https://docs.stripe.com/payouts | P | Receive payouts \| Stripe Documentation | 2026-10-02 | U-25 - first payout 7-14 days after first live payment; bank linking |
+| https://www.irs.gov/businesses/understanding-your-form-1099-k | P | Understanding your Form 1099-K \| Internal Revenue Service | 2026-10-02 | U-26 - 1099-K threshold ($20,000 / 200 transactions); all income reportable |
+| https://www.irs.gov/businesses/small-businesses-self-employed/self-employment-tax-social-security-and-medicare-taxes | P | Self-employment tax (Social Security and Medicare taxes) \| Internal Revenue Service | 2026-10-02 | U-26 - 15.3% SE tax from $400 net |
+| https://www.irs.gov/businesses/small-businesses-self-employed/estimated-taxes | P | Estimated taxes \| Internal Revenue Service | 2026-10-02 | U-26 - quarterly 1040-ES if owing $1,000 or more |
+| https://trustmrr.com/llms.txt | P | llms-txt | 2026-10-02 | U-27 - TrustMRR verification method via payment-provider API keys |
+| https://trustmrr.com/api/ai | P | ai | 2026-10-02 | U-27 - verified 30-day revenue snapshot behind the median ~$351 computation |
+| https://trustmrr.com/startup/altindex-llc.md | P | altindex-llc-md | 2026-10-02 | U-27 - AltIndex Stripe-verified data-API revenue and its data sources |
+| https://developers.google.com/search/docs/essentials/spam-policies | P | Spam Policies for Google Web Search \| Google Search Central  \|  Documentation  \|  Google for Developers | 2026-10-02 | U-28 - scaled content abuse, thin affiliation, site reputation abuse |
+| https://developers.google.com/search/docs/fundamentals/using-gen-ai-content | P | Google Search's Guidance on Generative AI Content on Your Website \| Google Search Central  \|  Documentation  \|  Google for Developers | 2026-10-02 | U-28 - gen-AI content guidance incl. ecommerce AI labelling (updated 2026-10-01) |
+| https://support.reddithelp.com/hc/en-us/articles/42728983564564-Responsible-Builder-Policy | P | Responsible Builder Policy – Reddit Help | 2026-10-02 | U-28 - Reddit API approval, commercial-use written approval, bot registration (403 to plain fetch) |
+| https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?lawCode=BPC&division=7.&title=&part=3.&chapter=6.&article= | P | Codes Display Text | 2026-10-02 | U-29 - California BOT Act B&P 17941 disclosure safe harbor |
+| https://www.ftc.gov/business-guidance/resources/ftcs-endorsement-guides-what-people-are-asking | P | FTC's Endorsement Guides: What People Are Asking \| Federal Trade Commission | 2026-10-02 | U-29 - affiliate/sponsor disclosure must be clear and near the link |
+| https://le.utah.gov/xcode/Title13/Chapter77/C13-77_2025050820250508.pdf | P | c13-77-2025050820250508-pdf | 2026-10-02 | U-29 - Utah 13-77 generative-AI disclosure on request; up-front safe harbor |
+| https://andonlabs.com/blog/opus-5-5-gpt-6-sol-grok-4-7-vending-bench | P | Opus 5.5, GPT-6 Sol and Grok 4.7 on Vending-Bench \| Andon Labs | 2026-10-02 | U-30 - documented agent misconduct (fabricated quotes, ignored refunds) |
+| https://raw.githubusercontent.com/Ithiel-Labs/make-money-30-Day-experiment/HEAD/README.md | P | readme-md | 2026-10-02 | U-30 - autonomous-revenue failure: $0, KYC wall, spam suspension, token switch (ban evasion) |
+| https://ghost.org/docs/faq/mailgun-newsletters/ | P | Why do I have to set up Mailgun? - Ghost Developer Docs | 2026-10-02 | U-31 - Ghost states that the only bulk mail API it supports for newsletters is Mailgun |
+| https://stripe.com/global | P | Stripe global availability | 2026-10-02 | U-32 U-01 - list of countries where a Stripe account is available (grep found no Israel) |
+| https://www.paddle.com/help/start/intro-to-paddle/which-countries-are-supported-by-paddle | P | Which countries are supported by Paddle? - Help Center - Paddle | 2026-10-02 | U-32 - Paddle's supported seller countries (Israel not confirmed by plain fetch; capture with browser) |
+| https://www.irs.gov/businesses/international-businesses/israel-tax-treaty-documents | P | Israel - Tax treaty documents \| Internal Revenue Service | 2026-10-02 | U-32 - US-Israel treaty, which sets W-8BEN withholding on US-source payouts |
+| https://docs.apify.com/platform/actors/publishing/quality-score | P | Actor quality score \| Platform \| Apify Documentation | 2026-10-02 | U-33 - quality score drives Store and MCP search-actors ranking; reliability and automated tests |
+| https://shopify.dev/docs/apps/launch/distribution/revenue-share | P | Revenue share for Shopify App Store developers | 2026-10-02 | U-34 - 0% share on first $1M lifetime revenue, 15% above, $19 registration |
+| https://shopify.dev/docs/apps/launch/app-requirements-checklist | P | Best practices for apps in the Shopify App Store | 2026-10-02 | U-34 - app review requirements (human gate before listing) |
+| https://docs.aws.amazon.com/marketplace/latest/userguide/seller-eligibility.html | P | Seller eligibility requirements - AWS Marketplace | 2026-10-02 | U-35 U-32 - eligible seller jurisdictions (Israel and US listed), tax and bank requirements |
+| https://docs.aws.amazon.com/data-exchange/latest/userguide/provider-getting-started.html | P | Getting started as a provider in AWS Data Exchange - AWS Data Exchange User Guide | 2026-10-02 | U-35 - provider onboarding via a support case, support and update obligations |
+| https://www.ecfr.gov/current/title-19/chapter-I/part-111/subpart-A/section-111.1 | P | eCFR :: 19 CFR 111.1 -- Definitions. | 2026-10-02 | U-36 - definition of 'customs business' reserved to licensed brokers |
+| https://www.irs.gov/individuals/international-taxpayers/tax-treaties | P | Tax treaties \| Internal Revenue Service | 2026-10-02 | U-32 U-37 - treaty benefits a foreign individual claims on W-8BEN |
+| https://www.gov.il/en/departments/israel_tax_authority | P | Israel Tax Authority | 2026-10-02 | U-37 - Israel Tax Authority entry page for registration of a self-employed dealer (osek patur / osek murshe) |
+| https://www.quora.com/We-started-a-US-based-Partnership-LLC-to-sell-on-Amazon-and-we-are-both-foreigners-Should-we-fill-a-W-9-or-a-W-8BEN-form-If-it-is-the-W-9-form-how-do-we-sign-at-the-end-where-it-asks-for-a-US-person-signature-Since | S | We started a US based Partnership LLC to sell on Amazon and we are both foreigners. Should we fill a W-9 or a W-8BEN form? If it is the W-9 form, how do we sign at the end where it asks for a US person signature? Since neither of us are US persons - Quora | 2026-10-02 | U-02 - the Apify payout pages do not say how US or foreign creators are tax-documented; no owning page is known yet |
+| https://lapada.org/wp-content/uploads/2017/05/Advice-on-IRS-Form-w-8-Series-LAPADA.pdf | S | advice-on-irs-form-w-8-series-lapada-pdf | 2026-10-02 | U-02 - the Apify payout pages do not say how US or foreign creators are tax-documented; no owning page is known yet |
+| https://w8geteasy.com/en/platforms/w8ben-upwork | S | W-8BEN for Upwork Freelancers: Cut 30% US Withholding | 2026-10-02 | U-02 - the Apify payout pages do not say how US or foreign creators are tax-documented; no owning page is known yet |
+| https://stripe.com/resources/more/payments-in-north-america | S | How to accept payments in North America \| Stripe | 2026-10-02 | U-09 U-01 - whether the operator's location (US, or Israel if the residency note holds) is eligible for Stripe as merchant of record |
+| https://support.stripe.com/questions/stripe-feature-availability-by-country | S | Stripe feature availability by country : Stripe: Help & Support | 2026-10-02 | U-09 U-01 - whether the operator's location (US, or Israel if the residency note holds) is eligible for Stripe as merchant of record |
+| https://stripe.com/resources/more/international-payment-solutions-for-the-travel-industry | S | International Payment Solutions for the Travel Industry \| Stripe | 2026-10-02 | U-09 U-01 - whether the operator's location (US, or Israel if the residency note holds) is eligible for Stripe as merchant of record |
+| https://reducto.ai/guides/best-invoice-ocr-software | S | Best Invoice OCR Software for Accounts Payable in 2026 \| Reducto Guides | 2026-10-02 | U-06 - competitor price points for the C3 OCR variant |
+| https://www.erpresearch.com/erp-add-ons/ocr/veryfi | S | Veryfi Review (2026): Pricing, Integrations & Alternatives \| ERP Research | 2026-10-02 | U-06 - competitor price points for the C3 OCR variant |
