@@ -8,3 +8,7 @@
 research/raw/* text eol=lf
 *.jsonl text eol=lf
 research/*.md text eol=lf
+
+# Captures whose fetched body carries CRLF bytes are stored byte-for-byte: the ledger hash
+# covers the bytes as fetched, and LF normalisation on add would alter the evidence.
+research/raw/2026-10-02-license-huggingface-78764217.md -text
