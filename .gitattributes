@@ -12,3 +12,4 @@ research/*.md text eol=lf
 # Captures whose fetched body carries CRLF bytes are stored byte-for-byte: the ledger hash
 # covers the bytes as fetched, and LF normalisation on add would alter the evidence.
 research/raw/2026-10-02-license-huggingface-78764217.md -text
+research/raw/2026-10-02-glive-affiliate-tax-forms-documentation--youtube-612d1954.md -text
