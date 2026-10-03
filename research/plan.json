@@ -5,7 +5,7 @@
   "refreshDays": 30,
   "limit": 8,
   "perQuery": 3,
-  "maxScrapes": 25,
+  "maxScrapes": 7,
   "prefer": [
     "apify.com",
     "aws.amazon.com",
@@ -675,6 +675,116 @@
       "url": "https://www.gov.il/en/departments/israel_tax_authority",
       "type": "P",
       "why": "U-37 - Israel Tax Authority entry page for registration of a self-employed dealer (osek patur / osek murshe)"
+    },
+    {
+      "url": "https://docs.stripe.com/payments/managed-payments/eligibility.md",
+      "type": "P",
+      "why": "U-09 - Managed Payments supported business locations, expanded (owner page, Markdown rendering)"
+    },
+    {
+      "url": "https://docs.ghost.org/members/",
+      "type": "P",
+      "why": "U-20 - Ghost members: Stripe is the only natively supported payment provider; alternative gateways"
+    },
+    {
+      "url": "https://www.mailgun.com/legal/aup/",
+      "type": "P",
+      "why": "U-31 - Mailgun acceptable-use policy: consent, thresholds, excluded senders"
+    },
+    {
+      "url": "https://www.mailgun.com/pricing/",
+      "type": "P",
+      "why": "U-31 - Mailgun Send plan prices at 10k-100k emails"
+    },
+    {
+      "url": "https://huggingface.co/docs/hub/spaces-overview",
+      "type": "P",
+      "why": "U-19 - which Spaces a free account may host; Gradio/Docker Spaces need PRO"
+    },
+    {
+      "url": "https://www.anthropic.com/supported-countries",
+      "type": "P",
+      "why": "U-14 U-25 - Anthropic supported regions list (Israel)"
+    },
+    {
+      "url": "https://help.openai.com/en/articles/5347006-openai-api-supported-countries-and-territories",
+      "type": "P",
+      "why": "U-25 - OpenAI API supported countries (Israel)"
+    },
+    {
+      "url": "https://help.etsy.com/hc/en-us/articles/115015710408",
+      "type": "P",
+      "why": "U-32 U-23 - countries eligible for Etsy Payments (Israel)"
+    },
+    {
+      "url": "https://help.etsy.com/hc/en-us/articles/115015628847",
+      "type": "P",
+      "why": "U-23 U-32 - Etsy payment processing fees by country (Israel 4.5% + 2 ILS)"
+    },
+    {
+      "url": "https://www.paypal.com/il/business/paypal-business-fees",
+      "type": "P",
+      "why": "U-32 - PayPal Israel merchant receiving fees"
+    },
+    {
+      "url": "https://help.shopify.com/en/partners/manage-account/manage-payouts-invoices",
+      "type": "P",
+      "why": "U-34 - Shopify Partner payout methods by country"
+    },
+    {
+      "url": "https://aws.amazon.com/data-exchange/pricing/",
+      "type": "P",
+      "why": "U-35 - AWS Data Exchange sender-side fees"
+    },
+    {
+      "url": "https://docs.aws.amazon.com/data-exchange/latest/userguide/publishing-guidelines.html",
+      "type": "P",
+      "why": "U-35 U-24 - AWS Data Exchange publishing guidelines (data eligibility)"
+    },
+    {
+      "url": "https://www.gov.il/he/departments/topics/income-tax-small-business-owner-24",
+      "type": "P",
+      "why": "U-37 - Israel Tax Authority: osek patur / micro-business ceiling and registration"
+    },
+    {
+      "url": "https://www.btl.gov.il/Insurance/Rates/Pages/%D7%9C%D7%A2%D7%95%D7%91%D7%93%D7%99%D7%9D%20%D7%A9%D7%9B%D7%99%D7%A8%D7%99%D7%9D.aspx",
+      "type": "P",
+      "why": "U-37 - National Insurance 2026 thresholds"
+    },
+    {
+      "url": "https://www.federalregister.gov/developers/documentation/api/v1",
+      "type": "P",
+      "why": "U-24 - Federal Register API documentation: no keys, endpoints, schema"
+    },
+    {
+      "url": "https://support.stripe.com/questions/physical-presence-requirement-faq",
+      "type": "P",
+      "why": "U-01 - Stripe physical-presence requirement FAQ for US accounts owned from abroad"
+    },
+    {
+      "url": "https://www.gov.il/he/service/request-open-exempt-dealer-via-internet",
+      "type": "P",
+      "why": "U-37 - Israel Tax Authority service page: opening an exempt dealer (osek patur) file online"
+    },
+    {
+      "url": "https://www.btl.gov.il/Insurance/National%20Insurance/type_list/Self_Employed/Pages/rates.aspx",
+      "type": "P",
+      "why": "U-37 - National Insurance self-employed contribution rates"
+    },
+    {
+      "url": "https://www.btl.gov.il/Insurance/National%20Insurance/type_list/Self_Employed/Pages/default.aspx",
+      "type": "P",
+      "why": "U-37 - National Insurance self-employed registration"
+    },
+    {
+      "url": "https://www.nevo.co.il/law_html/law00/72813.htm",
+      "type": "P",
+      "why": "U-37 - VAT Law text (section 30(a)(5) zero rate for services to foreign residents)"
+    },
+    {
+      "url": "https://www.kolzchut.org.il/he/%D7%A2%D7%95%D7%A1%D7%A7_%D7%A4%D7%98%D7%95%D7%A8",
+      "type": "S",
+      "why": "U-37 - Kol Zchut guide to the exempt dealer: ceiling, duties"
     }
   ]
 }
