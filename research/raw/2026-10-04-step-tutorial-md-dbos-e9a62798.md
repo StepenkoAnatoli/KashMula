@@ -1,0 +1,149 @@
+---
+url: https://docs.dbos.dev/python/tutorials/step-tutorial.md
+retrieved: 2026-10-04
+command: firecrawl scrape https://docs.dbos.dev/python/tutorials/step-tutorial.md --only-main-content --json
+statusCode: 200
+transport: firecrawl-cli
+completeness: full
+---
+# Steps
+
+> When using DBOS workflows, you should annotate any function that performs complex operations or accesses external APIs or services as a _step_.
+> If a workflow is interrupted, upon restart it automatically resumes execution from the **last completed step**.
+
+You can turn **any** Python function into a step by annotating it with the [`@DBOS.step`](../reference/decorators.md#step) decorator.
+The only requirement is that its outputs should be serializable.
+Here's a simple example:
+
+```python
+@DBOS.step()
+def example_step():
+    return requests.get("https://example.com").text
+```
+
+You should make a function a step if you're using it in a DBOS workflow and it performs a [**nondeterministic**](../tutorials/workflow-tutorial.md#determinism) operation.
+A nondeterministic operation is one that may return different outputs given the same inputs.
+Common nondeterministic operations include:
+
+- Accessing an external API or service, like serving a file from [AWS S3](https://aws.amazon.com/s3/), calling an external API like [Stripe](https://stripe.com/), or accessing an external data store like [Elasticsearch](https://www.elastic.co/elasticsearch/).
+- Accessing files on disk.
+- Generating a random number.
+- Getting the current time.
+
+You **cannot** call, start, or enqueue workflows from within steps.
+These operations should be performed from workflow functions.
+You can call one step from another step, but the called step becomes part of the calling step's execution rather than functioning as a separate step.
+If you call a step from outside a workflow, it runs as an ordinary function, without checkpoints, retries, or timeouts.
+
+### Configurable Retries
+
+You can optionally configure a step to automatically retry any exception a set number of times with exponential backoff.
+This is useful for automatically handling transient failures, like making requests to unreliable APIs.
+Retries are configurable through arguments to the [step decorator](../reference/decorators.md#step):
+
+```python
+DBOS.step(
+    retries_allowed: bool = False,
+    interval_seconds: float = 1.0,
+    max_attempts: int = 3,
+    backoff_rate: float = 2.0,
+    should_retry: Optional[Callable[[BaseException], Union[bool, Awaitable[bool]]]] = None,
+)
+```
+
+For example, we configure this step to retry exceptions (such as if `example.com` is temporarily down) up to 10 times:
+
+```python
+@DBOS.step(retries_allowed=True, max_attempts=10)
+def example_step():
+    return requests.get("https://example.com").text
+```
+
+If a step fails on all `max_attempts` attempts, it throws an exception (`DBOSMaxStepRetriesExceeded`) to the calling workflow.
+If that exception is not caught, the workflow [terminates](./workflow-tutorial.md).
+
+#### Filtering Retries With `should_retry`
+
+By default, every exception raised by the step is retried until `max_attempts` is reached.
+If you only want to retry certain exceptions; for example, transient network errors but not validation failures, pass a `should_retry` predicate.
+The predicate receives the raised exception. If it returns `False`, the exception is re-raised immediately and no further retries are attempted.
+
+```python
+@DBOS.step(
+    retries_allowed=True,
+    max_attempts=10,
+    should_retry=lambda e: not isinstance(e, FatalError),
+)
+def example_step():
+    return requests.get("https://example.com").text
+```
+
+For async steps, `should_retry` may itself be an `async` function:
+
+```python
+async def is_retryable(e: BaseException) -> bool:
+    return not isinstance(e, FatalError)
+
+@DBOS.step(retries_allowed=True, max_attempts=10, should_retry=is_retryable)
+async def example_step():
+    ...
+```
+
+Async predicates are only supported for async steps; pairing an async `should_retry` with a sync step raises an exception.
+
+### Coroutine Steps
+
+You may also decorate coroutines (functions defined with `async def`, also known as async functions) with `@DBOS.step`.
+Coroutine steps can use Python's asynchronous language capabilities such as [await](https://docs.python.org/3/reference/expressions.html#await), [async for](https://docs.python.org/3/reference/compound_stmts.html#async-for) and [async with](https://docs.python.org/3/reference/compound_stmts.html#async-with).
+Like synchronous step functions, async steps support [configurable automatic retries](#configurable-retries) and require their inputs and outputs to be serializable.  
+
+For example, here is an asynchronous version of the `example_step` function from above, using the [`aiohttp`](https://docs.aiohttp.org/en/stable/) library instead of [`requests`](https://requests.readthedocs.io/en/latest/).
+
+```python
+@DBOS.step(retries_allowed=True, max_attempts=10)
+async def example_step():
+    async with aiohttp.ClientSession() as session:
+        async with session.get("https://example.com") as response:
+            return await response.text()
+```
+
+### Step Timeouts
+
+You can set a timeout for an async step with `timeout_seconds`.
+If the step runs longer than that, it is cancelled and `DBOSStepTimeoutError` is raised to the calling workflow.
+This is useful for bounding a step that may hang, such as a request to an unresponsive service.
+
+```python
+@DBOS.step(timeout_seconds=30)
+async def example_step():
+    async with aiohttp.ClientSession() as session:
+        async with session.get("https://example.com") as response:
+            return await response.text()
+```
+
+Step timeouts are only supported for [async steps](#coroutine-steps), because Python provides no way to preempt a running synchronous function.
+
+If the step also has [retries](#configurable-retries) enabled, **each attempt gets its own timeout**, and time spent waiting between retries is not counted against it.
+A step with `timeout_seconds=30, max_attempts=3` therefore allows up to three 30-second attempts, not 30 seconds total.
+You can configure this behavior with a `should_retry` predicate, not retrying `DBOSStepTimeoutError`.
+
+### Running Steps In-Line With `run_step`
+
+If a function is not decorated with `@DBOS.step` and you would prefer not to wrap it, you can call the code as a step using [`DBOS.run_step`](../reference/contexts.md#run_step) (or `DBOS.run_step_async`).
+
+For example, if your code said:
+```python
+res = send_email(user, msg)
+```
+
+It could be quickly changed to a checkpointed step:
+
+```python
+res = DBOS.run_step(None, send_email, user, msg)
+```
+
+Or:
+```python
+res = DBOS.run_step({"name": "send_email_to_user"}, lambda: send_email(user, msg))
+```
+

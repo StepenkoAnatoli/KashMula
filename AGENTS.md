@@ -146,3 +146,71 @@ no check judges prose, because a gate that judges prose is a gate that will be w
    need one; the commit report's *why* names any alternative set aside.
 4. **One commit per task - the revert test.** `git revert <sha>` undoes it alone.
 5. **A red suite stops work**, reported immediately and alone, **with the cwd recorded**.
+
+## Orchestrator facts
+
+_Last verified: 2026-10-04, branch `claude/bold-hopper-oxr543` at `7ddd35d`.
+Maintained by the `lead-orchestrator` skill; update it when a phase changes any fact below._
+
+### Environments
+| Purpose | Platform and versions |
+|---|---|
+| Development | Claude Code cloud container: Linux, Python 3.11.15, uv 0.8.17, PostgreSQL 16.14, Docker, Node 22 (for the kit) |
+| Acceptance | The operator's merge of each phase PR, after the gate below passes on the PR head. No product CI exists yet; phase 1 adds it. |
+| Not runnable here | None yet. Phase 1 adds a Linux CI job, which this container can reproduce; a Windows or macOS leg would not be runnable here and would hold the merge until green. |
+
+- Filesystem guard: none. The product creates no links; revisit if a test ever needs one.
+
+### Quality gate (run in order)
+| Step | Command |
+|---|---|
+| Research gate | `node "$HOME/.agents/research-kit/bin/preflight.mjs"` (exit 0 required) |
+| Kit health | `node "$HOME/.agents/research-kit/bin/doctor.mjs"` (ends with `READY`) |
+| Product code | none yet; phase 1 records install, lint, typecheck and test commands here |
+
+### Baseline (development environment)
+- Known failures: none. There is no product code and no test suite yet.
+- Research gate: `PASS`, 0 blocking, 113 warnings: single-number quote anchors from pricing
+  tables, rated weak by the kit, and one-voice notes where a build fact rests only on its
+  vendor's own documentation, which is the owner of that fact.
+- Pass criterion: no blocking finding from `preflight.mjs`; from phase 1, no test failure.
+
+### Sources of truth
+- Decision and architecture: `docs/PLAN.md`
+- Build phases: `docs/BUILD.md`
+- Design specification: `docs/specs/`
+- Design decisions with rejected alternatives: `docs/adr/`
+- Code map: `docs/ARCHITECTURE.md`
+- Research handoff: `research/BRIEF.md`, with `research/DISCOVERY.md` and `research/EVIDENCE.md`
+- Session handoff: `HANDOFF.md`
+
+### Conventions
+- Commit format: the five-part report in "The standing protocol" above.
+- Branching and pull requests: one PR per phase from `claude/bold-hopper-oxr543`, restarted
+  from `main` after each merge; draft first; the operator merges; after a merge the agent asks
+  whether to start the next phase. No force-push.
+- Standing rules: fix a finding now, or record it under "Recorded for later" in `docs/BUILD.md`.
+
+### Invariants
+| Invariant | Evidence (test or check) |
+|---|---|
+| Every design fact from outside the repository traces to an evidence row | `preflight.mjs` PASS; the spec cites `E-nn` or `U-nn` |
+| No secret in the repository | `doctor.mjs` secret-scan |
+| No Stripe, no YouTube Shorts, no unattended posting on platforms that forbid it | `docs/PLAN.md` section 8; from phase 1, the policy layer's tests |
+
+### Research-Kit
+| Item | Value |
+|---|---|
+| Kit path | `~/.agents/research-kit` (0.9.3) |
+| Machine role | `collector` |
+| Transport / policy | `firecrawl-cli`, search through SerpAPI / `pluralist` |
+| `doctor` result | `READY`, 2026-10-04, after redeploying from the Research-Kit repository's `main` at `a4f6d9d` (PR #236); the repository copy's doctor confirms the deployed kit matches its tree |
+| `selftest` result | 2026-10-04, from the repository checkout: 1,583 passed, 2 failed. Both failures are the windows-1252 decoding tests: this container's Node 22.22.0 decodes byte 0x80 as U+0080 instead of the euro sign. Recorded as a kit finding; no capture in this corpus uses that path. |
+| Research folder | the repository root's `research/`: build facts extend the phase-1 contract with new unknowns, as `CLAUDE.md` asks |
+| Existing research | `research/` at the root: 51 unknowns (U-38 to U-51 are the build stack), 257 evidence rows, `PASS` |
+| Remote collector | none |
+
+### Parallel execution
+- Shared resources: the kit's cache and one Firecrawl budget; from phase 1, one local
+  PostgreSQL. Isolate tests by giving each builder its own database name.
+- Git worktrees available: yes.

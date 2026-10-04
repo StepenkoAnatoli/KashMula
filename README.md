@@ -11,6 +11,7 @@ quote from a cached capture, and the gate (`preflight.mjs`) passes before anythi
 
 ## Read in this order
 
+0. [`HANDOFF.md`](HANDOFF.md): where the project stands and how a fresh session resumes.
 1. [`docs/PLAN.md`](docs/PLAN.md): the decision, the ranked candidates, the architecture,
    the roadmap, the costs, the human steps that cannot be automated, and what was rejected.
 2. [`research/BRIEF.md`](research/BRIEF.md): the kit's phase-1 to phase-2 handoff: the
@@ -22,7 +23,7 @@ quote from a cached capture, and the gate (`preflight.mjs`) passes before anythi
 ## Status
 
 Phase 1 (research) is complete: `node "$HOME/.agents/research-kit/bin/preflight.mjs"` prints
-`PASS`. Phase 2 (the build) starts from `docs/PLAN.md` and `research/BRIEF.md`; a builder
+`PASS`. Phase 2 (the build) runs in phases, one pull request each (`HANDOFF.md`), and starts from `docs/PLAN.md` and `research/BRIEF.md`; a builder
 should not need to re-research anything. If a fact is missing, that is a phase-1 gap to
 close with the kit, not a guess to make.
 
@@ -30,3 +31,6 @@ close with the kit, not a guess to make.
 
 `AGENTS.md` carries the rules; `CLAUDE.md` points at it and records the operator's standing
 instruction that all research runs through Research-Kit.
+
+The skills every session here uses (`lead-orchestrator`, `brainstorming`, `careful-coding`,
+`gap-audit`, `break-test`) are vendored under `.claude/skills/`.

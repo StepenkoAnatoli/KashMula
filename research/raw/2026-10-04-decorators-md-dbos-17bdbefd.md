@@ -1,0 +1,286 @@
+---
+url: https://docs.dbos.dev/python/reference/decorators.md
+retrieved: 2026-10-04
+command: firecrawl scrape https://docs.dbos.dev/python/reference/decorators.md --only-main-content --json
+statusCode: 200
+transport: firecrawl-cli
+completeness: full
+---
+# Workflows & Steps
+
+> ```python
+> DBOS.workflow(
+>   *,
+>   name: Optional[str] = None,
+>   max_recovery_attempts: Optional[int] = 100,
+>   serialization_type: Optional[WorkflowSerializationFormat] = None,
+>   validate_args: Optional[ValidateArgsCallable] = None,
+> )
+> ```
+
+## Function Decorators
+
+### workflow
+
+```python
+DBOS.workflow(
+  *,
+  name: Optional[str] = None,
+  max_recovery_attempts: Optional[int] = 100,
+  serialization_type: Optional[WorkflowSerializationFormat] = None,
+  validate_args: Optional[ValidateArgsCallable] = None,
+)
+```
+
+Durably execute this function as a [DBOS workflow](../tutorials/workflow-tutorial.md).
+
+**Example:**
+```python
+@DBOS.workflow()
+def greeting_workflow(name: str, note: str):
+    sign_guestbook(name)
+    insert_greeting(name, note)
+```
+
+**Parameters:**
+- `name`: A name for this workflow. If not provided, the function's qualified name (`__qualname__`, which does not include its module) is used. Workflow names must be unique: registering workflows with the same name from different modules raises a `DBOSException`.
+- `max_recovery_attempts`: The maximum number of times execution of a workflow may be attempted.
+This acts as a [dead letter queue](https://en.wikipedia.org/wiki/Dead_letter_queue) so that a buggy workflow that crashes its application (for example, by running it out of memory) does not do so infinitely.
+If a workflow exceeds this limit, its status is set to `MAX_RECOVERY_ATTEMPTS_EXCEEDED` and it may no longer be executed.
+A workflow in this state may be [resumed](../tutorials/workflow-management.md#resuming-workflows), which will resume execution and reset the count of execution attempts.
+If this behavior is not desired, it may be disabled by setting `max_recovery_attempts=None`.
+- `serialization_type`: The default [serialization format](../../explanations/portable-workflows.md) to use for local invocations of this workflow. Set to `WorkflowSerializationFormat.PORTABLE` to test [cross-language interoperability](../../explanations/portable-workflows.md).
+- `validate_args`: An optional callable that validates and optionally coerces workflow arguments before execution. Pass the built-in `pydantic_args_validator` to automatically validate arguments against the function's type hints using [Pydantic](https://docs.pydantic.dev/). See [Input Validation and Coercion](#input-validation-and-coercion) below for details and examples.
+
+### step
+
+```python
+DBOS.step(
+    *,
+    name: Optional[str] = None,
+    retries_allowed: bool = False,
+    interval_seconds: float = 1.0,
+    max_attempts: int = 3,
+    backoff_rate: float = 2.0,
+    should_retry: Optional[Callable[[BaseException], Union[bool, Awaitable[bool]]]] = None,
+    preemptible: bool = False,
+    timeout_seconds: Optional[float] = None,
+)
+```
+
+Annotate a function as a step in a workflow.
+Workflows automatically checkpoint the outcomes of their steps.
+If a workflow is interrupted, it recovers from the last completed step.
+
+**Example:**
+```python
+@DBOS.step(retries_allowed=True, max_attempts=10)
+def example_step():
+    return requests.get("https://example.com").text
+```
+
+**Parameters:**
+- `name`: A name for this step. If not provided, the function's qualified name (`__qualname__`) is used.
+- `retries_allowed`: Whether to retry the step if it throws an exception.
+- `interval_seconds`: How long to wait before the initial retry.
+- `max_attempts`: The maximum number of times to attempt a step that is throwing exceptions, including the first attempt.
+- `backoff_rate`: How much to multiplicatively increase `interval_seconds` between retries.
+- `should_retry`: Optional predicate called with the raised exception to decide whether the step should be retried. If it returns `False` (or an awaitable resolving to `False`), the exception is re-raised immediately without further retries. Ignored when `retries_allowed` is `False`. Async predicates are only supported for async steps.
+- `preemptible`: If `True`, the step is cancelled immediately when its workflow is cancelled, rather than running to completion. Only supported for async steps.
+- `timeout_seconds`: If set, cancel the step and raise `DBOSStepTimeoutError` if it runs for longer than this many seconds. Only supported for async steps, and must be positive and finite. Each retry attempt gets a fresh timeout. See [Step Timeouts](../tutorials/step-tutorial.md#step-timeouts).
+
+### required_roles
+
+```python
+DBOS.required_roles(
+  roles: List[str]
+)
+```
+
+The `@DBOS.required_roles` decorator applies role-based security to the decorated function.  The authenticated user must have at least one of the roles on the `roles` list in order to access the function.
+
+**Parameters:**
+- `roles`: List of required roles applied to the decorated function.
+
+**Example:**
+```python
+@DBOS.workflow()
+@DBOS.required_roles(["support","admin"])
+def my_support_workflow():
+  pass # Function accessible only with "support" or "admin" role
+```
+
+### kafka_consumer
+
+```python
+DBOS.kafka_consumer(
+        config: dict[str, Any],
+        topics: list[str],
+        *,
+        ordering: Optional[Literal["none", "partition", "topic"]] = None,
+        batch_size: int = 250,
+        queue_name: Optional[str] = None,
+)
+```
+
+Runs a function for each Kafka message received on the specified topic(s). 
+Uses the Kafka message's topic, partition, and offset and the consumer group ID to create a unique [workflow id](../reference/contexts#setworkflowid) to ensure once and only once execution.
+Takes a configuration dictionary and a list of topics to consume. 
+The decorated function must take a KafkaMessage as its only parameter.
+
+**Parameters:**
+- `config`: a dictionary of config settings. Information on key settings follows with full configuration setting details available in the [official Kafka documentation](https://kafka.apache.org/documentation/#consumerconfigs).
+  - `bootstrap.servers`: A list of host/port pairs to use for establishing the initial connection to the Kafka cluster.
+    This list should be in the form host1:port1,host2:port2,...
+  - `group.id`: A unique string that identifies the consumer group this consumer belongs to.
+    Setting it is recommended: if it is omitted, DBOS generates one from the function name and topics and logs a warning.
+- `topics`: a list of Kafka topics to subscribe to. A topic prefixed with `^` is treated as a regular expression.
+- `ordering`: Controls how messages are processed. See [In-Order Processing](../tutorials/kafka-integration.md#in-order-processing).
+  - `"none"` (default): messages are processed in parallel.
+  - `"partition"`: messages are processed serially per topic partition (preserving Kafka's per-partition delivery order) and in parallel across partitions.
+  - `"topic"`: messages are processed serially per topic.
+- `batch_size`: The maximum number of messages consumed from Kafka and durably enqueued per batch. Defaults to 250.
+- `queue_name`: The name of an optional [queue](./queues.md) on which consumer workflows run, for example to configure concurrency or rate limits. Only valid with `ordering="none"`; ordered consumers share an internal partitioned queue. The named queue must not be a [partitioned queue](../tutorials/queue-tutorial.md#partitioning-queues). If you use [`DBOS.listen_queues`](./dbos-class.md#listen_queues), you must include this queue.
+
+**Example**
+```python
+@DBOS.kafka_consumer(
+        config={
+            "bootstrap.servers": "localhost:9092",
+            "group.id": "dbos-kafka-group",
+        },
+        topics=["example-topic"],
+)
+@DBOS.workflow()
+def test_kafka_workflow(msg: KafkaMessage):
+    DBOS.logger.info(f"Message received: {msg.value.decode()}")
+```
+
+## Input Validation and Coercion
+
+Python workflows can specify a `validate_args` parameter on `@DBOS.workflow()`.
+The built-in `pydantic_args_validator` sentinel builds a [Pydantic](https://docs.pydantic.dev/) validator from the function's type hints at decoration time.
+This validates argument types and coerces compatible values (for example, ISO date strings to `datetime` objects).
+Validation runs when a workflow is dequeued for execution (for example, after being enqueued, recovered, or forked), not when the workflow function is called directly or started with `DBOS.start_workflow`.
+
+```python
+from datetime import datetime
+from typing import Dict, Any, List
+from dbos import DBOS, WorkflowSerializationFormat, pydantic_args_validator
+
+@DBOS.workflow(
+    serialization_type=WorkflowSerializationFormat.PORTABLE,
+    validate_args=pydantic_args_validator,
+)
+def process_order(name: str, count: int, tags: List[str]) -> str:
+    # Pydantic validates types — "not_a_number" for count raises ValueError
+    return f"{name}:{count}:{','.join(tags)}"
+
+@DBOS.workflow(
+    serialization_type=WorkflowSerializationFormat.PORTABLE,
+    validate_args=pydantic_args_validator,
+)
+def schedule_task(name: str, due: datetime, tags: List[str]) -> str:
+    # Pydantic coerces the ISO string "2025-06-15T10:30:00" to a datetime object
+    return f"{name}@{due.isoformat()}#{','.join(tags)}"
+```
+
+You can also provide a custom validator function.
+It must accept `(positional_args_tuple, keyword_args_dict)` and return a validated `(positional_args_tuple, keyword_args_dict)`:
+
+```python
+def my_validator(args, kwargs):
+    # Custom validation or coercion logic
+    return args, kwargs
+
+@DBOS.workflow(
+    serialization_type=WorkflowSerializationFormat.PORTABLE,
+    validate_args=my_validator,
+)
+def my_workflow(x: int) -> str:
+    return str(x)
+```
+
+For more context on why input validation matters for cross-language workflows, see [Input Validation and Coercion](../../explanations/portable-workflows.md#input-validation-and-coercion).
+
+## Classes and Decorators
+
+Methods in classes can be decorated with any of the [function decorators](#function-decorators) above.
+Functions marked as `@classmethod` or `@staticmethod` are supported in the same way as regular functions. 
+Classes with instance methods should extend from [`DBOSConfiguredInstance`](#dbosconfiguredinstance).
+
+### dbos_class
+
+```python
+DBOS.dbos_class(
+  class_name: Optional[str] = None
+)
+```
+
+The `@DBOS.dbos_class` decorator should be applied to all classes with DBOS workflow and step functions.  This decorator assists in making sure all functions are properly registered with the class and provided with class-level configuration information.
+
+**Parameters**
+- `class_name` (Optional): A custom name to register the class with DBOS. By default, DBOS uses the class’s qualified name (`cls.__qualname__`) for identification. This can be overridden by providing a user-defined name, which may differ from the qualified name. All class names registered with DBOS must be globally unique.
+
+**Example:**
+```python
+@DBOS.dbos_class()
+class MyClass:
+  @staticmethod
+  @DBOS.workflow()
+  def my_class_wf():
+    pass
+```
+
+### default_required_roles
+
+```python
+DBOS.default_required_roles(
+  roles: List[str]
+)
+```
+
+The `@DBOS.default_required_roles` decorator can be applied to a class to set the default list of required access roles for all functions in the class.  The list of required roles for individual functions can be overridden with [`required_roles`](#required_roles).
+
+**Parameters:**
+- `roles`: List of required roles to apply to all functions not individually decorated with [`required_roles`](#required_roles).
+
+**Example:**
+```python
+@DBOS.default_required_roles(["user"])
+class MyClass:
+  @staticmethod
+  @DBOS.workflow()
+  def my_user_function() -> None:
+    pass  # Must have "user" role to access
+
+  @staticmethod
+  @DBOS.workflow()
+  @DBOS.required_roles(["admin"])
+  def my_admin_function() -> None:
+    pass  # Must have "admin" role to access
+```
+
+### DBOSConfiguredInstance
+
+```python
+DBOSConfiguredInstance(
+  config_name: str
+)
+```
+
+`DBOSConfiguredInstance` should be used as a base for classes with decorated instance member functions.
+`DBOSConfiguredInstance` collects the instance name; this name is recorded in the database workflow records so that recovery can be targeted to the correct instance.
+`DBOSConfiguredInstance` also registers the class instance with the DBOS recovery system.
+
+**Parameters:**
+- `config_name`: The name of the instance, for recording in workflow database records
+
+**Example:**
+```python
+@DBOS.dbos_class()
+class DBOSTestClass(DBOSConfiguredInstance):
+    def __init__(self) -> None:
+        super().__init__("instance1")
+```
+
