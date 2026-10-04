@@ -38,6 +38,8 @@ is not enough.
 | T-10 | Upstream data-source legality and reuse rights for data products and Actors | Data products are the best-evidenced model but the riskiest when built on scraped social data (AltIndex, asksynopsis). Only official APIs or open data with reuse rights qualify. | COVERED | U-04, U-24, U-36 |
 | T-11 | Hosting and runtime ToS (where an always-on commercial bot may legally run) | GitHub Actions and Pages forbid this use, the operator's DROPSCRAP already violates the Actions terms, and HF Spaces billing and plan rules conflict across docs. | COVERED | U-17 |
 | T-12 | Agent safety: misconduct drift, prompt injection from fetched content, and consumer-protection guardrails | Vending-Bench agents lied to suppliers, ignored refunds and colluded; bounty repos carry honeypot instructions; Project Vend nearly approved an illegal contract. An unattended business needs hard guardrails. | COVERED | U-30 |
+| T-13 | Runtime libraries the code is written against (DBOS Transact, Pydantic AI): versions, durable-execution semantics, queues, messages, workflow management, usage limits and offline testing | The build must not guess library behaviour; idempotency, budgets and the approval gate rest on these semantics | COVERED | U-38, U-39, U-40, U-41, U-42, U-43, U-44, U-45, U-46 |
+| T-14 | Apify Actor development: SDK lifecycle, pay-per-event charging, definition files, permissions, publishing automation and Store testing | The first product is an Actor; how it is charged, permissioned, published and tested decides what the bot can do without a human | COVERED | U-47, U-48, U-49, U-50, U-51 |
 
 ## Coverage notes (per dimension)
 

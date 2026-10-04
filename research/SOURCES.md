@@ -224,3 +224,41 @@ carries the design, `S` secondary is context, `L` lead-only is a hint and never 
 | https://www.kolzchut.org.il/he/%D7%A2%D7%95%D7%A1%D7%A7_%D7%A4%D7%98%D7%95%D7%A8 | S | עוסק פטור (מושג) – כל-זכות | 2026-10-03 | U-37 - Kol Zchut guide to the exempt dealer: ceiling, duties |
 | https://apify.com/spec-lab/scrape-local-government-permits/api | S | Scrape Local Government Permits API · Apify | 2026-10-03 | U-05 - competitor set and demand within candidate Actor niches; no category-level page identified |
 | https://apify.com/parsebird | S | ParseBird (parsebird) · Apify | 2026-10-03 | U-05 - competitor set and demand within candidate Actor niches; no category-level page identified |
+| https://pypi.org/project/dbos/ | P | dbos · PyPI | 2026-10-04 | U-38 - DBOS Transact Python package: version, Python support, licence |
+| https://pypi.org/project/pydantic-ai/ | P | pydantic-ai · PyPI | 2026-10-04 | U-38 - Pydantic AI package: version, Python support, licence |
+| https://pypi.org/project/apify/ | P | apify · PyPI | 2026-10-04 | U-38 - Apify SDK for Python package: version, Python support, licence |
+| https://docs.dbos.dev/python/reference/configuration.md | P | configuration-md | 2026-10-04 | U-39 - DBOSConfig fields and system database URL |
+| https://docs.dbos.dev/python/tutorials/database-connection.md | P | database-connection-md | 2026-10-04 | U-39 - which databases DBOS uses for its state, Postgres and SQLite |
+| https://docs.dbos.dev/python/tutorials/workflow-tutorial.md | P | workflow-tutorial-md | 2026-10-04 | U-40 - workflow durability, determinism, workflow IDs |
+| https://docs.dbos.dev/python/tutorials/step-tutorial.md | P | step-tutorial-md | 2026-10-04 | U-40 - steps, retries and checkpointing |
+| https://docs.dbos.dev/python/reference/decorators.md | P | decorators-md | 2026-10-04 | U-40 - decorator reference for workflows and steps |
+| https://docs.dbos.dev/python/reference/contexts.md | P | contexts-md | 2026-10-04 | U-40, U-42 - SetWorkflowID, recv, send, set_event, get_event |
+| https://docs.dbos.dev/python/tutorials/queue-tutorial.md | P | queue-tutorial-md | 2026-10-04 | U-41 - queue concurrency, rate limits, deduplication, priority, timeouts |
+| https://docs.dbos.dev/python/tutorials/workflow-communication.md | P | workflow-communication-md | 2026-10-04 | U-42 - messages with timeouts and events |
+| https://docs.dbos.dev/python/tutorials/workflow-management.md | P | workflow-management-md | 2026-10-04 | U-42 - listing, cancelling and resuming workflows |
+| https://docs.dbos.dev/python/tutorials/testing.md | P | testing-md | 2026-10-04 | U-43 - pytest patterns for DBOS |
+| https://pydantic.dev/docs/ai/core-concepts/agent/index.md | P | index-md | 2026-10-04 | U-44 - agent runs and usage limits |
+| https://pydantic.dev/docs/ai/core-concepts/retries/index.md | P | index-md | 2026-10-04 | U-44 - default HTTP and provider retries |
+| https://pydantic.dev/docs/ai/models/anthropic/index.md | P | index-md | 2026-10-04 | U-44 - Anthropic model configuration |
+| https://pydantic.dev/docs/ai/guides/testing/index.md | P | index-md | 2026-10-04 | U-45 - offline testing with TestModel and FunctionModel |
+| https://pydantic.dev/docs/ai/capabilities/durable_execution/dbos/index.md | P | index-md | 2026-10-04 | U-46 - DBOSAgent integration and its constraints |
+| https://docs.dbos.dev/integrations/pydantic-ai.md | P | pydantic-ai-md | 2026-10-04 | U-46 - the DBOS side of the Pydantic AI integration |
+| https://docs.apify.com/sdk/python/docs/overview.md | P | overview-md | 2026-10-04 | U-47 - Apify SDK for Python overview |
+| https://docs.apify.com/sdk/python/docs/concepts/actor-lifecycle.md | P | actor-lifecycle-md | 2026-10-04 | U-47 - Actor lifecycle in Python |
+| https://docs.apify.com/sdk/python/docs/concepts/actor-input.md | P | actor-input-md | 2026-10-04 | U-47 - reading Actor input |
+| https://docs.apify.com/sdk/python/docs/guides/input-validation.md | P | input-validation-md | 2026-10-04 | U-47 - validating input with Pydantic |
+| https://docs.apify.com/sdk/python/docs/concepts/storage-clients.md | P | storage-clients-md | 2026-10-04 | U-47 - local storage for offline runs |
+| https://docs.apify.com/sdk/python/docs/concepts/pay-per-event.md | P | pay-per-event-md | 2026-10-04 | U-48 - charging pay-per-event events from Python |
+| https://docs.apify.com/actors/publishing/monetize/pay-per-event.md | P | pay-per-event-md | 2026-10-04 | U-48 - pay-per-event model, events and limits |
+| https://docs.apify.com/actors/monetize/set-up-monetization.md | P | set-up-monetization-md | 2026-10-04 | U-48, U-51 - where monetization and prices are set |
+| https://docs.apify.com/actors/development/actor-definition/actor-json.md | P | actor-json-md | 2026-10-04 | U-49 - actor.json fields |
+| https://docs.apify.com/actors/development/actor-definition/input-schema/specification/v1.md | P | v1-md | 2026-10-04 | U-49 - input schema specification |
+| https://docs.apify.com/actors/development/actor-definition/output-schema.md | P | output-schema-md | 2026-10-04 | U-49 - output schema |
+| https://docs.apify.com/storage/dataset-schema.md | P | dataset-schema-md | 2026-10-04 | U-49 - dataset schema |
+| https://docs.apify.com/actors/development/permissions.md | P | permissions-md | 2026-10-04 | U-50 - limited and full permissions |
+| https://docs.apify.com/actors/development/permissions/migration-guide.md | P | migration-guide-md | 2026-10-04 | U-50 - moving an Actor to limited permissions |
+| https://docs.apify.com/actors/publishing/publish.md | P | publish-md | 2026-10-04 | U-51 - publishing an Actor to the Store |
+| https://docs.apify.com/api/v2/actor-put.md | P | actor-put-md | 2026-10-04 | U-51 - what the Update Actor API can change |
+| https://docs.apify.com/cli/docs/reference.md | P | reference-md | 2026-10-04 | U-51 - apify push and other CLI commands |
+| https://docs.apify.com/actors/publishing/test.md | P | test-md | 2026-10-04 | U-51 - testing before publishing |
+| https://docs.apify.com/actors/development/automated-tests.md | P | automated-tests-md | 2026-10-04 | U-51 - automated tests Apify runs on Actors |

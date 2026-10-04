@@ -5,7 +5,7 @@
   "refreshDays": 30,
   "limit": 8,
   "perQuery": 3,
-  "maxScrapes": 7,
+  "maxScrapes": 25,
   "prefer": [
     "apify.com",
     "aws.amazon.com",
@@ -785,6 +785,196 @@
       "url": "https://www.kolzchut.org.il/he/%D7%A2%D7%95%D7%A1%D7%A7_%D7%A4%D7%98%D7%95%D7%A8",
       "type": "S",
       "why": "U-37 - Kol Zchut guide to the exempt dealer: ceiling, duties"
+    },
+    {
+      "url": "https://pypi.org/project/dbos/",
+      "type": "P",
+      "why": "U-38 - DBOS Transact Python package: version, Python support, licence"
+    },
+    {
+      "url": "https://pypi.org/project/pydantic-ai/",
+      "type": "P",
+      "why": "U-38 - Pydantic AI package: version, Python support, licence"
+    },
+    {
+      "url": "https://pypi.org/project/apify/",
+      "type": "P",
+      "why": "U-38 - Apify SDK for Python package: version, Python support, licence"
+    },
+    {
+      "url": "https://docs.dbos.dev/python/reference/configuration.md",
+      "type": "P",
+      "why": "U-39 - DBOSConfig fields and system database URL"
+    },
+    {
+      "url": "https://docs.dbos.dev/python/tutorials/database-connection.md",
+      "type": "P",
+      "why": "U-39 - which databases DBOS uses for its state, Postgres and SQLite"
+    },
+    {
+      "url": "https://docs.dbos.dev/python/tutorials/workflow-tutorial.md",
+      "type": "P",
+      "why": "U-40 - workflow durability, determinism, workflow IDs"
+    },
+    {
+      "url": "https://docs.dbos.dev/python/tutorials/step-tutorial.md",
+      "type": "P",
+      "why": "U-40 - steps, retries and checkpointing"
+    },
+    {
+      "url": "https://docs.dbos.dev/python/reference/decorators.md",
+      "type": "P",
+      "why": "U-40 - decorator reference for workflows and steps"
+    },
+    {
+      "url": "https://docs.dbos.dev/python/reference/contexts.md",
+      "type": "P",
+      "why": "U-40, U-42 - SetWorkflowID, recv, send, set_event, get_event"
+    },
+    {
+      "url": "https://docs.dbos.dev/python/tutorials/queue-tutorial.md",
+      "type": "P",
+      "why": "U-41 - queue concurrency, rate limits, deduplication, priority, timeouts"
+    },
+    {
+      "url": "https://docs.dbos.dev/python/tutorials/workflow-communication.md",
+      "type": "P",
+      "why": "U-42 - messages with timeouts and events"
+    },
+    {
+      "url": "https://docs.dbos.dev/python/tutorials/workflow-management.md",
+      "type": "P",
+      "why": "U-42 - listing, cancelling and resuming workflows"
+    },
+    {
+      "url": "https://docs.dbos.dev/python/tutorials/testing.md",
+      "type": "P",
+      "why": "U-43 - pytest patterns for DBOS"
+    },
+    {
+      "url": "https://pydantic.dev/docs/ai/core-concepts/agent/index.md",
+      "type": "P",
+      "why": "U-44 - agent runs and usage limits"
+    },
+    {
+      "url": "https://pydantic.dev/docs/ai/core-concepts/retries/index.md",
+      "type": "P",
+      "why": "U-44 - default HTTP and provider retries"
+    },
+    {
+      "url": "https://pydantic.dev/docs/ai/models/anthropic/index.md",
+      "type": "P",
+      "why": "U-44 - Anthropic model configuration"
+    },
+    {
+      "url": "https://pydantic.dev/docs/ai/guides/testing/index.md",
+      "type": "P",
+      "why": "U-45 - offline testing with TestModel and FunctionModel"
+    },
+    {
+      "url": "https://pydantic.dev/docs/ai/capabilities/durable_execution/dbos/index.md",
+      "type": "P",
+      "why": "U-46 - DBOSAgent integration and its constraints"
+    },
+    {
+      "url": "https://docs.dbos.dev/integrations/pydantic-ai.md",
+      "type": "P",
+      "why": "U-46 - the DBOS side of the Pydantic AI integration"
+    },
+    {
+      "url": "https://docs.apify.com/sdk/python/docs/overview.md",
+      "type": "P",
+      "why": "U-47 - Apify SDK for Python overview"
+    },
+    {
+      "url": "https://docs.apify.com/sdk/python/docs/concepts/actor-lifecycle.md",
+      "type": "P",
+      "why": "U-47 - Actor lifecycle in Python"
+    },
+    {
+      "url": "https://docs.apify.com/sdk/python/docs/concepts/actor-input.md",
+      "type": "P",
+      "why": "U-47 - reading Actor input"
+    },
+    {
+      "url": "https://docs.apify.com/sdk/python/docs/guides/input-validation.md",
+      "type": "P",
+      "why": "U-47 - validating input with Pydantic"
+    },
+    {
+      "url": "https://docs.apify.com/sdk/python/docs/concepts/storage-clients.md",
+      "type": "P",
+      "why": "U-47 - local storage for offline runs"
+    },
+    {
+      "url": "https://docs.apify.com/sdk/python/docs/concepts/pay-per-event.md",
+      "type": "P",
+      "why": "U-48 - charging pay-per-event events from Python"
+    },
+    {
+      "url": "https://docs.apify.com/actors/publishing/monetize/pay-per-event.md",
+      "type": "P",
+      "why": "U-48 - pay-per-event model, events and limits"
+    },
+    {
+      "url": "https://docs.apify.com/actors/monetize/set-up-monetization.md",
+      "type": "P",
+      "why": "U-48, U-51 - where monetization and prices are set"
+    },
+    {
+      "url": "https://docs.apify.com/actors/development/actor-definition/actor-json.md",
+      "type": "P",
+      "why": "U-49 - actor.json fields"
+    },
+    {
+      "url": "https://docs.apify.com/actors/development/actor-definition/input-schema/specification/v1.md",
+      "type": "P",
+      "why": "U-49 - input schema specification"
+    },
+    {
+      "url": "https://docs.apify.com/actors/development/actor-definition/output-schema.md",
+      "type": "P",
+      "why": "U-49 - output schema"
+    },
+    {
+      "url": "https://docs.apify.com/storage/dataset-schema.md",
+      "type": "P",
+      "why": "U-49 - dataset schema"
+    },
+    {
+      "url": "https://docs.apify.com/actors/development/permissions.md",
+      "type": "P",
+      "why": "U-50 - limited and full permissions"
+    },
+    {
+      "url": "https://docs.apify.com/actors/development/permissions/migration-guide.md",
+      "type": "P",
+      "why": "U-50 - moving an Actor to limited permissions"
+    },
+    {
+      "url": "https://docs.apify.com/actors/publishing/publish.md",
+      "type": "P",
+      "why": "U-51 - publishing an Actor to the Store"
+    },
+    {
+      "url": "https://docs.apify.com/api/v2/actor-put.md",
+      "type": "P",
+      "why": "U-51 - what the Update Actor API can change"
+    },
+    {
+      "url": "https://docs.apify.com/cli/docs/reference.md",
+      "type": "P",
+      "why": "U-51 - apify push and other CLI commands"
+    },
+    {
+      "url": "https://docs.apify.com/actors/publishing/test.md",
+      "type": "P",
+      "why": "U-51 - testing before publishing"
+    },
+    {
+      "url": "https://docs.apify.com/actors/development/automated-tests.md",
+      "type": "P",
+      "why": "U-51 - automated tests Apify runs on Actors"
     }
   ]
 }
