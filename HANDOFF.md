@@ -24,7 +24,7 @@ platforms legally allow. Hard constraints from the operator:
 |---|---|
 | Phase-1 research (Research-Kit) | Done. PRs #1, #2 and #3 merged into `main`. `preflight.mjs` prints `PASS`, 0 blocking. |
 | The decision | `docs/PLAN.md`: C1, pay-per-event Actors on Apify Store first; C6, disclosed AI print-on-demand on Etsy via Printify, in parallel and human-gated; C2/C8, a customs and tariff alert feed, conditional in month 2-3. |
-| The build | Starting. Phase 0 (this handoff, the skills, the build research and the design) is the first build PR. |
+| The build | Phase 0 is in draft PR #4: this handoff, the skills, the build-stack research (U-38 to U-51, gate `PASS`) and the design. |
 
 ## How the build runs: phases, one PR each
 
@@ -73,8 +73,8 @@ its keys; a cleared chat in the same container does.
 
 | Item | Value on 2026-10-04 |
 |---|---|
-| Kit | `~/.agents/research-kit`, version 0.9.3, `doctor.mjs` READY, role `collector` |
-| Collection transport | `firecrawl-cli` 1.25.2, logged in, 1,058 credits left |
+| Kit | `~/.agents/research-kit`, redeployed 2026-10-04 from the Research-Kit repository's `main` (`a4f6d9d`, PR #236), `doctor.mjs` READY, role `collector`. Its self-test: 1,583 passed, 2 failed on this container's Node 22.22.0 (windows-1252 decoding), recorded as a kit finding |
+| Collection transport | `firecrawl-cli` 1.25.2, logged in, 1,020 credits left |
 | Search transport | SerpAPI, 0 searches left until the cycle renews on 2026-10-14; plan URLs directly until then |
 | Commit gate | `core.hooksPath` points at the kit's `githooks` |
 | Toolchain | Python 3.11, uv 0.8, PostgreSQL 16, Docker |
@@ -88,11 +88,12 @@ key, then run `node "$HOME/.agents/research-kit/bin/doctor.mjs"` until it prints
 
 - **Moonzila (formerly MoonAliza).** Draft PR
   [StepenkoAnatoli/Moonzila#31](https://github.com/StepenkoAnatoli/Moonzila/pull/31)
-  renames the product in user-facing text and specifies **Operate mode**: the desktop app as
+  renamed the product in user-facing text and specified **Operate mode**: the desktop app as
   the operator's seat for this bot (approval queue, status board and Stop, evidence review,
-  code-change proposals) over an HTTPS API that KashMula's runtime will serve. Open
-  question to the operator: the product text says "Monnzila" while the repository is now
-  named "Moonzila"; one of them should change.
+  code-change proposals) over an HTTPS API that KashMula's runtime will serve. Merged on
+  2026-10-04. Open question to the operator: the product text says "Monnzila" while the
+  repository is named "Moonzila"; one of them should change. The Moonzila repository's copy
+  of `lead-orchestrator` is older than the operator's current one vendored here.
 - **Builder choice.** The operator asked which coding agent should build this; the answer
   was Claude Code first, with GPT-6.1 Sol as the second opinion.
 - **Hardware.** For running the bot and developing locally, the GMKtec NucBox K11 at

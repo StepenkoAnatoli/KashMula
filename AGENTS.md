@@ -149,7 +149,7 @@ no check judges prose, because a gate that judges prose is a gate that will be w
 
 ## Orchestrator facts
 
-_Last verified: 2026-10-04, branch `claude/bold-hopper-oxr543` at `9521dd6` (= `main`).
+_Last verified: 2026-10-04, branch `claude/bold-hopper-oxr543` at `7ddd35d`.
 Maintained by the `lead-orchestrator` skill; update it when a phase changes any fact below._
 
 ### Environments
@@ -157,6 +157,9 @@ Maintained by the `lead-orchestrator` skill; update it when a phase changes any 
 |---|---|
 | Development | Claude Code cloud container: Linux, Python 3.11.15, uv 0.8.17, PostgreSQL 16.14, Docker, Node 22 (for the kit) |
 | Acceptance | The operator's merge of each phase PR, after the gate below passes on the PR head. No product CI exists yet; phase 1 adds it. |
+| Not runnable here | None yet. Phase 1 adds a Linux CI job, which this container can reproduce; a Windows or macOS leg would not be runnable here and would hold the merge until green. |
+
+- Filesystem guard: none. The product creates no links; revisit if a test ever needs one.
 
 ### Quality gate (run in order)
 | Step | Command |
@@ -167,8 +170,9 @@ Maintained by the `lead-orchestrator` skill; update it when a phase changes any 
 
 ### Baseline (development environment)
 - Known failures: none. There is no product code and no test suite yet.
-- Research gate: `PASS`, 0 blocking, 102 warnings (single-number quote anchors from pricing
-  tables, rated weak by the kit; each sits next to its capture).
+- Research gate: `PASS`, 0 blocking, 113 warnings: single-number quote anchors from pricing
+  tables, rated weak by the kit, and one-voice notes where a build fact rests only on its
+  vendor's own documentation, which is the owner of that fact.
 - Pass criterion: no blocking finding from `preflight.mjs`; from phase 1, no test failure.
 
 ### Sources of truth
@@ -200,10 +204,10 @@ Maintained by the `lead-orchestrator` skill; update it when a phase changes any 
 | Kit path | `~/.agents/research-kit` (0.9.3) |
 | Machine role | `collector` |
 | Transport / policy | `firecrawl-cli`, search through SerpAPI / `pluralist` |
-| `doctor` result | `READY`, 2026-10-04 |
-| `selftest` result | not run |
+| `doctor` result | `READY`, 2026-10-04, after redeploying from the Research-Kit repository's `main` at `a4f6d9d` (PR #236); the repository copy's doctor confirms the deployed kit matches its tree |
+| `selftest` result | 2026-10-04, from the repository checkout: 1,583 passed, 2 failed. Both failures are the windows-1252 decoding tests: this container's Node 22.22.0 decodes byte 0x80 as U+0080 instead of the euro sign. Recorded as a kit finding; no capture in this corpus uses that path. |
 | Research folder | the repository root's `research/`: build facts extend the phase-1 contract with new unknowns, as `CLAUDE.md` asks |
-| Existing research | `research/` at the root: 37 unknowns, 219 evidence rows, `PASS` |
+| Existing research | `research/` at the root: 51 unknowns (U-38 to U-51 are the build stack), 257 evidence rows, `PASS` |
 | Remote collector | none |
 
 ### Parallel execution
